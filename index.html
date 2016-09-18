@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Neverwinter Feats Tool</title>
+<style>
+div.feats {width: 1260px;}
+div.column {float: left;}
+div.classpath {height: 160px;}
+div.box {float: left; height: 75px; width: 126px; text-align: center;}
+div.box div {width: 120px;}
+div.capstone {height: 75px; width: 126px; margin-top: 90px; text-align: center;}
+#tree0, #tree1, #tree2 {clear: left; font-weight: bold; height: 29px;}
+#warnings {clear: left; outline: thin dotted black;}
+div.bold {font-weight: bold;}
+div.error {color: red;}
+div.warning {color: orange;}
+span.keyword {color: green;} /* #a4ff5e in-game */
+span.mechanic {color: blue;} /* #8585ff in-game */
+span.rankup {color: green;} /* #a4ff5e in-game */
+</style>
+
+</head>
+<body>
+<div class="feats">
+  <div class="column">
+    <div class="classpath">
+      <select id="class" onchange="changeClass()">
+        <option>Control Wizard</option>
+        <option>Devoted Cleric</option>
+        <option>Great Weapon Fighter</option>
+        <option>Guardian Fighter</option>
+        <option>Hunter Ranger</option>
+        <option>Oathbound Paladin</option>
+        <option>Scourge Warlock</option>
+        <option>Trickster Rogue</option>
+      </select>
+      <select id="path" onchange="changePath()">
+        <option>label</option>
+        <option>label</option>
+      </select>
+    </div>
+    <div>
+      <div class="box" onmouseenter="enter(0)" onmouseleave="leave()"><select id="0" onchange="update()"></select><div></div></div>
+      <div class="box" onmouseenter="enter(3)" onmouseleave="leave()"><select id="3" onchange="update()"></select><div></div></div>
+      <div class="box" onmouseenter="enter(6)" onmouseleave="leave()"><select id="6" onchange="update()"></select><div></div></div>
+      <div class="box" onmouseenter="enter(9)" onmouseleave="leave()"><select id="9" onchange="update()"></select><div></div></div>
+    </div>
+    <div>
+      <div class="box" onmouseenter="enter(1)" onmouseleave="leave()"><select id="1" onchange="update()"></select><div></div></div>
+      <div class="box" onmouseenter="enter(4)" onmouseleave="leave()"><select id="4" onchange="update()"></select><div></div></div>
+      <div class="box" onmouseenter="enter(7)" onmouseleave="leave()"><select id="7" onchange="update()"></select><div></div></div>
+      <div class="box" onmouseenter="enter(10)" onmouseleave="leave()"><select id="10" onchange="update()"></select><div></div></div>
+    </div>
+    <div>
+      <div class="box" onmouseenter="enter(2)" onmouseleave="leave()"><select id="2" onchange="update()"></select><div></div></div>
+      <div class="box" onmouseenter="enter(5)" onmouseleave="leave()"><select id="5" onchange="update()"></select><div></div></div>
+      <div class="box" onmouseenter="enter(8)" onmouseleave="leave()"><select id="8" onchange="update()"></select><div></div></div>
+      <div class="box" onmouseenter="enter(11)" onmouseleave="leave()"><select id="11" onchange="update()"></select><div></div></div>
+    </div>
+  </div>
+  <div class="column">
+    <div id="tree0"></div>
+    <div>
+      <div class="box" onmouseenter="enter(12)" onmouseleave="leave()"><select id="12" onchange="update()"></select><div></div></div>
+      <div class="box" onmouseenter="enter(14)" onmouseleave="leave()"><select id="14" onchange="update()"></select><div></div></div>
+      <div class="box" onmouseenter="enter(15)" onmouseleave="leave()"><select id="15" onchange="update()"></select><div></div></div>
+      <div class="box" onmouseenter="enter(17)" onmouseleave="leave()"><select id="17" onchange="update()"></select><div></div></div>
+      <div class="box" onmouseenter="enter(19)" onmouseleave="leave()"><select id="19" onchange="update()"></select><div></div></div>
+    </div>
+    <div>
+      <div class="box" onmouseenter="enter(13)" onmouseleave="leave()"><select id="13" onchange="update()"></select><div></div></div>
+      <div class="box" onmouseenter="enter(42)" onmouseleave="leave()"><select id="42" onchange="update()"></select><div></div></div>
+      <div class="box" onmouseenter="enter(16)" onmouseleave="leave()"><select id="16" onchange="update()"></select><div></div></div>
+      <div class="box" onmouseenter="enter(18)" onmouseleave="leave()"><select id="18" onchange="update()"></select><div></div></div>
+      <div class="box" onmouseenter="enter(20)" onmouseleave="leave()"><select id="20" onchange="update()"></select><div></div></div>
+    </div>
+    <div id="tree1"></div>
+    <div>
+      <div class="box" onmouseenter="enter(22)" onmouseleave="leave()"><select id="22" onchange="update()"></select><div></div></div>
+      <div class="box" onmouseenter="enter(24)" onmouseleave="leave()"><select id="24" onchange="update()"></select><div></div></div>
+      <div class="box" onmouseenter="enter(25)" onmouseleave="leave()"><select id="25" onchange="update()"></select><div></div></div>
+      <div class="box" onmouseenter="enter(27)" onmouseleave="leave()"><select id="27" onchange="update()"></select><div></div></div>
+      <div class="box" onmouseenter="enter(29)" onmouseleave="leave()"><select id="29" onchange="update()"></select><div></div></div>
+    </div>
+    <div>
+      <div class="box" onmouseenter="enter(23)" onmouseleave="leave()"><select id="23" onchange="update()"></select><div></div></div>
+      <div class="box" onmouseenter="enter(43)" onmouseleave="leave()"><select id="43" onchange="update()"></select><div></div></div>
+      <div class="box" onmouseenter="enter(26)" onmouseleave="leave()"><select id="26" onchange="update()"></select><div></div></div>
+      <div class="box" onmouseenter="enter(28)" onmouseleave="leave()"><select id="28" onchange="update()"></select><div></div></div>
+      <div class="box" onmouseenter="enter(30)" onmouseleave="leave()"><select id="30" onchange="update()"></select><div></div></div>
+    </div>
+    <div id="tree2"></div>
+    <div>
+      <div class="box" onmouseenter="enter(32)" onmouseleave="leave()"><select id="32" onchange="update()"></select><div></div></div>
+      <div class="box" onmouseenter="enter(34)" onmouseleave="leave()"><select id="34" onchange="update()"></select><div></div></div>
+      <div class="box" onmouseenter="enter(35)" onmouseleave="leave()"><select id="35" onchange="update()"></select><div></div></div>
+      <div class="box" onmouseenter="enter(37)" onmouseleave="leave()"><select id="37" onchange="update()"></select><div></div></div>
+      <div class="box" onmouseenter="enter(39)" onmouseleave="leave()"><select id="39" onchange="update()"></select><div></div></div>
+    </div>
+    <div>
+      <div class="box" onmouseenter="enter(33)" onmouseleave="leave()"><select id="33" onchange="update()"></select><div></div></div>
+      <div class="box" onmouseenter="enter(44)" onmouseleave="leave()"><select id="44" onchange="update()"></select><div></div></div>
+      <div class="box" onmouseenter="enter(36)" onmouseleave="leave()"><select id="36" onchange="update()"></select><div></div></div>
+      <div class="box" onmouseenter="enter(38)" onmouseleave="leave()"><select id="38" onchange="update()"></select><div></div></div>
+      <div class="box" onmouseenter="enter(40)" onmouseleave="leave()"><select id="40" onchange="update()"></select><div></div></div>
+    </div>
+  </div>
+  <div class="column">
+    <div class="capstone" onmouseenter="enter(21)" onmouseleave="leave()"><select id="21" onchange="update()"></select><div></div></div>
+    <div class="capstone" onmouseenter="enter(31)" onmouseleave="leave()"><select id="31" onchange="update()"></select><div></div></div>
+    <div class="capstone" onmouseenter="enter(41)" onmouseleave="leave()"><select id="41" onchange="update()"></select><div></div></div>
+  </div>
+</div>
+<div id="warnings"></div>
+<br>
+<div id="description"></div>
+<script>
+var paths = [
+    ["Master of Flame", "Spellstorm Mage"],
+    ["Anointed Champion", "Divine Oracle"],
+    ["Iron Vanguard", "Swordmaster"],
+    ["Iron Vanguard", "Swordmaster"],
+    ["Pathfinder", "Stormwarden"],
+    ["Oath of Devotion", "Oath of Protection"],
+    ["Hellbringer", "Soulbinder"],
+    ["Master Infiltrator", "Whisperknife"]
+];
+
+var trees = [
+    ["Oppressor", "Thaumaturge", "Renegade"],
+    ["Virtuous", "Faithful", "Righteous"],
+    ["Instigator", "Destroyer", "Sentinel"],
+    ["Conqueror", "Protector", "Tactician"],
+    ["Archery", "Combat", "Trapper"],
+    ["Justice", "Bulwark", "Light"],
+    ["Fury", "Damnation", "Temptation"],
+    ["Saboteur", "Scoundrel", "Executioner"]
+];
+
+var feats = [
+    [ // Control Wizard
+        {feat: "Controlling Action", cap: 5, desc: "Gain 2/4/6/8/10% additional {k:AP} when using powers on a controlled target."},
+        {feat: "Weapon Mastery", cap: 3, desc: "Increases your {k:CritChance} by 1/2/3%."},
+        {feat: "Toughness", cap: 3, desc: "Increases your maximum {k:HP} by 3/6/9%."},
+        {feat: "Fight On", cap: 5, desc: "Encounter cooldowns reduced by 2/4/6/8/10%."},
+        {feat: "Battlewise", cap: 3, desc: "You create 2/4/6% less threat."},
+        {feat: "Wizard's Wrath", cap: 3, desc: "Your area effect powers deal 1/2/3% more damage."},
+        {feat: "Blighting Power", cap: 3, desc: "Your Cold powers deal an additonal 2/4/6% damage to targets affected by {k:Chill}."},
+        {feat: "Lightning Teleport", cap: 5, desc: "When you kill a foe you restore 2/4/6/8/10% of your Maximum Stamina."},
+        {feat: "Arcane Enhancement", cap: 3, desc: "Your Arcane powers deal 1/2/3% more damage."},
+        {feat: "Learned Spellcaster", cap: 5, desc: "Increase the amount of bonus damage Intelligence gives you by 1/2/3/4/5%."},
+        {feat: "Prestidigitation", cap: 3, desc: "You and your allies gain 1/2/3% increased Stat Ratings."},
+        {feat: "Focused Wizardry", cap: 3, desc: "Your single target powers deal 10/20/30% more damage and your Area of Effect powers deal 30/20/10% less damage."},
+        {feat: "Severe Reaction", cap: 5, desc: "When struck you have a 15% chance to repel your attacker 1/2/3/4/5 feet and restore 2/4/6/8/10% of your Stamina. This only works within 20 feet."},
+        {feat: "Bitter Cold", cap: 5, desc: "Targets take 1/2/3/4/5% more damage for 6 seconds after being affected by {k:Chill}. This effect does not stack."},
+        {feat: "Brisk Transport", cap: 5, desc: "When you Teleport your {k:speed} is increased by 2/4/6/8/10% for 3 seconds."},
+        {feat: "Frigid Winds", cap: 5, desc: "Foes who have been {k:Frozen} take 2/4/6/8/10% more {k:rDamage} from all sources."},
+        {feat: "Icy Veins", cap: 5, desc: "When you activate an Encounter power all foes within 15' of you have 1/2/3/4/5 stacks of {k:Chill} applied to them."},
+        {feat: "Cold Infusion", cap: 5, desc: "Foes afflicted with {k:Chill} deal 1/2/3/4/5% less damage for 10 seconds. This effect does not stack."},
+        {feat: "Glacial Movement", cap: 5, desc: "Ray of Frost has a 10/20/30/40/50% chance to apply an additional stack of {k:Chill}. <br><br>Additionally, this feat increases the effectiveness of each rank of Orb of Imposition by 4/8/12/16/20%."},
+        {feat: "Alacrity", cap: 5, desc: "When you deal damage to an enemy afflicted by {k:Chill} you have a chance to reduce the cooldowns of Icy Terrain and Entangling Force by .5/1/1.5/2/2.5 seconds."},
+        {feat: "Controlled Momentum", cap: 5, desc: "After using a Control Encounter power nearby allies deal 1/2/3/4/5% more damage for 6 seconds. This effect does not stack."},
+        {feat: "Shatter Strike", cap: 1, desc: "When you freeze a target they are afflicted by Shattered for 10 seconds. Shattered foes have a chance when taking damage to be stunned for 5 seconds (1 second on players) and take up to 5% of their Max HP in damage (max 300% weapon damage). This effect consumes Shatter. Additionally, your control powers deal 100% of your weapon damage against control immune targets. Additionally, {k:Chill} lasts 2.5 seconds longer."},
+        {feat: "Tempest Magic", cap: 5, desc: "When your target is below 30% max {k:hp} you deal an additional 1/2/3/4/5% damage."},
+        {feat: "Malevolent Surge", cap: 5, desc: "When you kill a foe you gain 1/2/3/4/5% more damage. Lasts 15 seconds."},
+        {feat: "Snap Freeze", cap: 5, desc: "Your Cold based At-Will and Encounter powers deal an additonal 2/4/6/8/10% damage to targets who are not affected by Chill."},
+        {feat: "Elemental Reinforcement", cap: 5, desc: "When you cast a Fire, Arcane, Cold or Lightning encounter power you gain 1/2/3/4/5% increased damage for 10 seconds. Each Element may apply this bonus separately."},
+        {feat: "Spell Twisting", cap: 5, desc: "Your Encounter Powers apply Spell Twisting for 10 seconds, which stacks up to 3 times. When you cast an At Will power, your stacks of Spell Twisting are consumed to reduce the cooldown time on recharging powers. Cooldown is reduced by 2/4/6/8/10% per stack."},
+        {feat: "Far Spell", cap: 5, desc: "Increase the range of your single target powers by 2/4/6/8/10ft."},
+        {feat: "Frozen Power Transfer", cap: 5, desc: "Chilling Cloud now grants 1/2/3/4/5% bonus damage for every target you strike with its third strike. This bonus lasts for 20 seconds and stacks up to 3 times."},
+        {feat: "Transcended Master", cap: 5, desc: "Shard of Endless Avalanche deals an additional 5/10/15/20/25% damage. Icy Rays deals an additional 5/10/15/20/25% damage if cast on the same target twice. Icy Rays has its cooldown reduced by 1/2/3/4/5 seconds if used on two different targets."},
+        {feat: "Elemental Empowerment", cap: 5, desc: "Dealing Cold damage has a 3/6/9/12/15% chance to apply Creeping Frost. Creeping Frost deals 85% of your weapon damage as cold damage every 2 seconds for 12 seconds. Dealing Arcane damage has a 3/6/9/12/15% chance to apply Warped Magics. Warped Magics deals 50% of your weapon damage as Arcane damage every 2 seconds for 12 seconds. Warped Magics ignores half of a target's resistance. These effects do not stack."},
+        {feat: "Assailing Force", cap: 1, desc: "Dealing damage to foes has a chance to grant you Assailant. When you have Assailant your next Encounter power deals 15% of the target's max HP as unresistable damage (max 800% weapon damage). This will only affect one target when used in an AoE. This feat is half as effective and can be resisted and deflected when used on players."},
+        {feat: "Critical Power", cap: 5, desc: "When you land a critical hit you gain 1/2/3/4/5% of your total {k:AP}. (10 second cooldown)"},
+        {feat: "Reaper's Touch", cap: 5, desc: "Your at wills deal 2/4/6/8/10% more damage when you are within 20ft of your target."},
+        {feat: "Energy Recovery", cap: 5, desc: "The third strike of Chilling Cloud now has a 25% chance to give you 1/2/3/4/5% of your max {k:HP} as {k:THP}. This amount is increased by an additional .2/.4/6/.8/1% of your max {k:HP} for each target hit."},
+        {feat: "Uncertain Allegiance", cap: 5, desc: "When you critically strike you grant allies 1/2/3/4/5% {k:CritChance} for 10 seconds."},
+        {feat: "Abyss of Chaos", cap: 5, desc: "When you strike a foe with an Encounter Power you mark them with Abyss. When an ally strikes that foe they consume Abyss to deal 12/24/36/48/60% of your weapon damage."},
+        {feat: "Phantasmal Destruction", cap: 5, desc: "When you deal {k:CA} damage you have a 40% chance to gain 3/6/9/12/15% Critical Severity for 6 seconds."},
+        {feat: "Nightmare Wizardry", cap: 5, desc: "When you crit a foe you have a 4/8/12/16/20% chance for you and your allies to gain {k:CA} against it for 12 seconds."},
+        {feat: "Masterful Arcane Theft", cap: 5, desc: "Steal Time and Ray of Enfeeblement deal 3/6/9/12/15% more damage to targets afflicted with {k:Chill} and an additional 1.2/2.4/3.6/4.8/6% for each stack of {k:ArcaneM} on you."},
+        {feat: "Chilling Advantage", cap: 5, desc: "When you have Chilling Presence slotted, your spells have 2/4/6/8/10% more chance to crit."},
+        {feat: "Chaos Magic", cap: 1, desc: "Dealing Damage to targets has a chance to apply Chaos Magic to yourself and allies within 50'. When you are affected by Chaos Magic you cannot be affected by a new Chaos Magic. You will be affected by Chaotic Growth, Chaotic Nexus, or Chaotic Fury.<br><br>Chaotic Growth - {k:Heal} yourself for 250% weapon damage every .5 seconds for 10 seconds. <br>Chaotic Nexus - You gain 30% additional Armor Penetration and Critical Chance for 10 seconds.<br>Chaotic Fury - You gain gain 30% additional Damage and 10% additional Life Steal for 10 seconds."}
+    ],
+    [ // Devoted Cleric
+        {feat: "Healing Action", cap: 5, desc: "Gain 1/2/3/4/5% more {k:APs} whenever you use a {k:healing} ability."},
+        {feat: "Greater Fortune", cap: 3, desc: "Your Wisdom now grants 1/2/3% more healing."},
+        {feat: "Toughness", cap: 3, desc: "Increases your maximum {k:HP} by 3/6/9%."},
+        {feat: "Holy Resolve", cap: 3, desc: "Gain 5/10/15% of your Maximum Hit Points in {k:THP} when you drop below 30% {k:hp}.<br><br>Has a 5 minute cooldown."},
+        {feat: "Domain Synergy", cap: 5, desc: "Gain 1/2/3/4/5% more Recovery."},
+        {feat: "Weapon Mastery", cap: 3, desc: "Increases your {k:CritChance} by 1/2/3%."},
+        {feat: "Initiate of the Faith", cap: 5, desc: "Your Crit stat is increased by .2/.4/.6/.8/1% of your Power stat."},
+        {feat: "Repurpose Soul", cap: 3, desc: "When one of your spells has a critical effect, the target of that spell disperses a small area effect heal, healing you and your allies for 5/10/15% of the spell's effect."},
+        {feat: "Battlewise", cap: 3, desc: "You create 2/4/6% less threat."},
+        {feat: "Cleanse", cap: 3, desc: "When you {k:heal} an ally you have a 10/20/30% chance to remove a {k:dot} effect from them.<BR>You may not Re-Cleanse a target for 8 seconds."},
+        {feat: "Templar's Domain", cap: 5, desc: "When dealing damage, you have a 5/10/15/20/25% chance to gain 30% more Armor Penetration for 5 seconds."},
+        {feat: "Bountiful Fortune", cap: 5, desc: "Gain 3/6/9/12/15% more Divine Power."},
+        {feat: "Lasting Wishes", cap: 5, desc: "You {k:heal} for 2/4/6/8/10% more."},
+        {feat: "Have Faith", cap: 5, desc: "Allies who are affected by your {k:HoT} effects have 1/2/3/4/5% more {k:dres}."},
+        {feat: "Urgent Prayers", cap: 5, desc: "When one of your {k:HoT} effects heals a target below 10/20/30/40/50% {k:hp}, it will heal for an additional 25% of your Weapon Damage."},
+        {feat: "Gift of Haste", cap: 5, desc: "Your {k:HoT} powers also grant the target 1/2/3/4/5% of their AP over 5 seconds."},
+        {feat: "Gift of Life", cap: 5, desc: "Your {k:HOT} effects heal for 5/10/15/20/25% more while you are at 100% health."},
+        {feat: "Unbreakable Devotion", cap: 5, desc: "Your {k:HoT} effects grant allies a shield that ignores a flat amount of damage for 6 seconds. This amount is equal to 10/20/30/40/50% of your weapon damage. A target may only benefit from this shield once every 20 seconds."},
+        {feat: "Purity", cap: 5, desc: "Your {k:HoT} effects have a 2/4/6/8/10% chance to heal allies for an additional 200%."},
+        {feat: "Virtue's Gift", cap: 5, desc: "Your {k:HOT} effects heal for 20% more while you are above 95/90/85/80/75% health."},
+        {feat: "Cleansing Fire", cap: 5, desc: "Your damaging encounter powers have a 10/20/30/40/50% chance to apply a {k:HOT} effect to all allies within 30' of the target. This effect heals for 350% of your weapon damage over 15 seconds. This effect does not stack."},
+        {feat: "Shield of the Divine", cap: 1, desc: "When you, or an ally within 30' of you takes damage, they receive a {k:HOT} from you, healing for 500% of your weapon damage over 10 seconds. An ally cannot trigger this effect while already affected by Shield of the Divine. Additionally, Healing Word, Bastion of Health, and Divine Glow no longer directly heal allies and instead apply a {k:HOT} to affected allies for double that amount over 12 seconds."},
+        {feat: "Resounding Beliefs", cap: 5, desc: "Your non-{k:HoT} powers {k:heal} for 2/4/6/8/10% more."},
+        {feat: "Desperate Restoration", cap: 5, desc: "You {k:heal} for 6/12/18/24/30% more if you or the target are below 30% HP."},
+        {feat: "Divine Intervention", cap: 5, desc: "Your healing spells have a 5/10/15/20/25% chance to grant the target 150% of your weapon damage as Temporary Hit Points."},
+        {feat: "Gift of the Gods", cap: 5, desc: "You generate 5/10/15/20/25% more Divine Power."},
+        {feat: "Final Acts", cap: 5, desc: "Your Power is increased by 10/20/30/40/50% while you are a below 30% HP."},
+        {feat: "Shared Burdens", cap: 5, desc: "Your direct healing spells also {k:heal} allies within 30' the target for 4/8/12/16/20% of the original heal."},
+        {feat: "Chaplain's Strength", cap: 5, desc: "When a foe is within 30' of you, your {k:heals} are increased by 2/4/6/8/10%."},
+        {feat: "Test of Faith", cap: 5, desc: "When taking damage you gain a stack of Faith. Every 3 seconds a stack of Faith will seek out a nearby damaged ally and {k:heal} them for 60/120/180/240/300% of your weapon damage. You can only gain a stack of Faith once every second. You may only have 20 stacks, and they are removed if you leave combat."},
+        {feat: "United By Faith", cap: 5, desc: "For each ally within 30' of you your healing is increased by 1/2/3/4/5%."},
+        {feat: "Agent of the Divine", cap: 1, desc: "Your {k:Heal} spells on allies now heal for 25% less and store the difference on the target as a \"Gift of Faith\". While an ally has Gift of Faith on them, when they drop below 45% HP the Gift of Faith is expended to immediately heal them for the full amount of the Gift. Additionally Healing Word, Bastion of Health, and Divine Glow no longer apply a Regeneration effect, but instead grant the amount they would have healed directly to Gift of Faith."},
+        {feat: "Astral Fury", cap: 5, desc: "You deal 2/4/6/8/10% more damage."},
+        {feat: "Furious Intervention", cap: 5, desc: "You generate 2/4/6/8/10% more {k:aps} when dealing damage."},
+        {feat: "Righteous Suffering", cap: 5, desc: "When you take damage you deal 2/4/6/8/10% more damage for 10 seconds."},
+        {feat: "Living Fire", cap: 5, desc: "When you are below 30% HP you deal 5/10/15/20/25% extra damage as Fire damage."},
+        {feat: "Weapons of Light", cap: 5, desc: "Allies within 30' have their Power increased by 2/4/6/8/10% of your Power."},
+        {feat: "Bear Your Sins", cap: 5, desc: "Foes who are under the effect of one of your {k:DOT} effects take 2/4/6/8/10% more damage from all sources."},
+        {feat: "Piercing Light", cap: 5, desc: "Your damaging powers have 2/4/6/8/10% additional Armor Penetration."},
+        {feat: "Condemning Gaze", cap: 5, desc: "Your damaging encounter powers apply a stack of Condemned to affected targets for 30 seconds. If a foe reaches 5 stacks of Condemned they take 3/6/9/12/15% more damage from all sources for 15 seconds and will not gain new stacks of Condemned until this effect expires."},
+        {feat: "Fire Of the Gods", cap: 5, desc: "When you critically strike a foe they are set ablaze, taking 20/40/60/80/100% of your weapon damage every second for 15 seconds. This effect does not stack."},
+        {feat: "Avatar of the Divine", cap: 1, desc: "When you enter combat you gain Avatar. Avatar increases your damage by 40% and increases your cooldown speed by 40% for 25 seconds. After you have activated Avatar you cannot benefit from it again for 60 seconds. Avatar will reactivate automatically when it is ready. Leaving combat cancels Avatar and resets its cooldown."}
+    ],
+    [ // Great Weapon Fighter
+        {feat: "Unstoppable Action", cap: 5, desc: "You gain 5/10/15/20/25% bonus {k:AP} for dealing damage while you are {k:Unstoppable}."},
+        {feat: "Disciple of Strength", cap: 3, desc: "Increase the amount of bonus damage Strength gives you by 2/4/6%."},
+        {feat: "Toughness", cap: 3, desc: "Increases your maximum {k:HP} by 3/6/9%."},
+        {feat: "Fast Runner", cap: 5, desc: "Decrease Stamina drain while Sprinting by 3/6/9/12/15%."},
+        {feat: "Endless Assault", cap: 3, desc: "Your Encounter powers deal 2/4/6% more damage."},
+        {feat: "Armor Specialization", cap: 3, desc: "Increases the effectiveness of Armor Class and Defense by 5/10/15%."},
+        {feat: "Steely Defense", cap: 5, desc: "Grants you Power equal to 4/8/12/16/20% of your Defense."},
+        {feat: "Constitution Focus", cap: 3, desc: "Increase the effectiveness of Constitution by 5/10/15%."},
+        {feat: "Grit", cap: 3, desc: "Gain 1/2/3% of your Max {k:HP} in {k:THP} when you are {k:healed} by a player power. (40 second cooldown)"},
+        {feat: "Weapon Mastery", cap: 3, desc: "Increases your {k:CritChance} by 1/2/3%."},
+        {feat: "Devastating Critical", cap: 3, desc: "Increases your {k:CritSev} by 5/10/15%."},
+        {feat: "Ubiquitous Shield", cap: 5, desc: "Reduce the damage effects of {k:CA} against you by 5/10/15/20/25%."},
+        {feat: "Student of the Sword", cap: 5, desc: "Your critical strikes lower your target's Damage Resistance to your attacks by 1/2/3/4/5% for 5 seconds. This effect does not stack."},
+        {feat: "Fleet Footed", cap: 5, desc: "Whenever you Control a target, you gain an additional 3/6/9/12/15% {k:speed} for 3s."},
+        {feat: "Vicious Advantage", cap: 5, desc: "{k:CA} now grants you an additional 1/2/3/4/5% Damage and Crit Chance."},
+        {feat: "Warrior's Rush", cap: 5, desc: "Your Mighty Leap now cools down 5/10/15/20/25% faster and silences foes for 1 second on impact."},
+        {feat: "Flanking Maneuvers", cap: 5, desc: "When you critically strike a foe from behind you knock them {k:prone} for 1.2/1.4/1.6/1.8/2 seconds.   This power Stuns players instead of knocking them {k:prone}."},
+        {feat: "Nimble Runner", cap: 5, desc: "Sprint and Punishing Charge grant 2/4/6/8/10% Deflect chance."},
+        {feat: "Allied Opportunity", cap: 5, desc: "Mighty Leap and Not so Fast deal an additional 6/12/18/24/30% damage and you and your allies gain {k:CA} against the damaged targets for 1.5/3/4.5/6/7.5s."},
+        {feat: "Group Assault", cap: 5, desc: "Wicked Strike now deals an additional 2/4/6/8/10% for each target hit."},
+        {feat: "Crippling Strike", cap: 5, desc: "Spinning Strike and Avalanche of Steel now {k:slow} your targets by 10/20/30/40/50% for 5s"},
+        {feat: "Instigator's Vengeance", cap: 1, desc: "Your damage is increased by 10%. This value is increased by 10% each time you are struck in combat, up to a total maximum bonus of 50%. Instigator's Vengeance expires after 6 seconds of not getting hit."},
+        {feat: "Great Weapon Focus", cap: 5, desc: "Increase the damage of your At-Will powers by 2/4/6/8/10%"},
+        {feat: "Deep Gash", cap: 5, desc: "Your critical strikes cause your target to Bleed, taking 4/8/12/16/20% of your Power as Damage over 6 seconds."},
+        {feat: "Disciple of War", cap: 5, desc: "Grants you Power equal to 5/10/15/20/25% of your Recovery and Armor Penetration."},
+        {feat: "Mighty Blade", cap: 5, desc: "Your AoE {k:rDamage} is increased by 2.5/5/7.5/9/12.5%."},
+        {feat: "Unfettered Strikes", cap: 5, desc: "Successful Melee attacks increase your {k:Speed} by 1/2/3/4/5% for 4 seconds. This effect stacks 4 times."},
+        {feat: "Executioner's Style", cap: 5, desc: "Indomitable Battle Strike and Sure Strike now deal 6/12/18/24/30% bonus damage as target's health diminishes."},
+        {feat: "Relentless Battle Fury", cap: 5, desc: "Reduces the Cooldown of Roar, Takedown, and Battle Fury by 5/10/15/20/25%. Activating Roar, Takedown, or Battle Fury grants you Relentless. Relentless causes you to ignore an additional 1/2/3/4/5% of foe's resistance."},
+        {feat: "Focused Destroyer", cap: 5, desc: "Destroyer now has a 5/10/15/20/25% chance to grant a stack when hitting any number of targets. Additionally, Destroyer grants you .7/1.4/2.1/2.8/3.5% bonus damage per stack."},
+        {feat: "Battle Awareness", cap: 5, desc: "Savage Advance grants you 5/10/15/20/25% shorter cooldowns for 15 seconds and Slam grants you 5/10/15/20/25% more Power while it is active."},
+        {feat: "Destroyer's Purpose", cap: 1, desc: "You now gain {k:Determination} by dealing damage, and {k:Unstoppable} also increases your Encounter power damage by 10%.<br><br>When you deal damage while Unstoppable, you gain a stack of Destroyer's Purpose (max 20). Each stack of Destroyer's Purpose increases your damage by 2%. Destroyer's Purpose lasts 25 seconds."},
+        {feat: "Unstoppable Recovery", cap: 5, desc: "Activating Unstoppable now {k:heals} you for 1/2/3/4/5% of your maximum {k:hp}."},
+        {feat: "Scale Agility", cap: 5, desc: "You gain 1/2/3/4/5% chance to Deflect attacks."},
+        {feat: "Powerful Challenge", cap: 5, desc: "You deal an additional 3/6/9/12/15% damage to {k:Marked} targets."},
+        {feat: "Living Wall", cap: 5, desc: "Allies within 30' of you take 1/2/3/4/5% less {k:rDamage}. If they stand directly behind you this bonus is doubled."},
+        {feat: "Countless Scars", cap: 5, desc: "Each time you are struck you gain 1% {k:DRes} for 6 seconds. This effect can stack 3/6/9/12/15 times."},
+        {feat: "Grudge Style", cap: 5, desc: "Sure Strike now has an extra 1/2/3/4/5% chance to Crit and both Sure Strike and Reaping Strike generate an additional 10/20/30/40/50% Threat."},
+        {feat: "Intimidation", cap: 5, desc: "Daring Shout and Come and Get It now deal 25/50/75/100/125% of your weapon damage, and generates twice that value as threat. In addition, affected become Intimidated and all of your attacks build 100/200/300/400/500% more threat against them."},
+        {feat: "Master at Arms", cap: 5, desc: "Furthering your ability to use your weapon defensively, each stack of Weapon Master now also grants .4/.8/1.2/1.6/2% Deflect Chance.  Having Weapon Master slotted increases your AC by 1/2/3/4/5 and increases your threat generation by 10/20/30/40/50%."},
+        {feat: "Defiance", cap: 5, desc: "Slam and Spinning Strike generate 5/10/15/20/25% additional threat and your Defense is increased by 5/10/15/20/25% while they are active."},
+        {feat: "Sentinel's Aegis", cap: 1, desc: "Increases the effectiveness of your Defense stat by 20% and causes Restoring Strike to {k:heal} an additional 50% over 3 seconds. Unstoppable now grants 40-80% {k:dres} when activated.<br><br>Threat Generation is passively increased by 250%."}
+    ],
+    [ // Guardian Fighter
+        {feat: "Action Surge", cap: 5, desc: "Gain 2/4/6/8/10% more {k:AP} from {k:Guarding} attacks."},
+        {feat: "Strength Focus", cap: 3, desc: "Increase the effectiveness of Strength by 5/10/15%."},
+        {feat: "Toughness", cap: 3, desc: "Increases your maximum {k:HP} by 3/6/9%."},
+        {feat: "Shielded Resurgence", cap: 3, desc: "When affected by a control power, gain 2/3/4% of your {k:HP} over 10 seconds. Can happen once every 30 seconds."},
+        {feat: "Distracting Shield", cap: 5, desc: "When you {k:Guard} an attack, your attacker briefly deals 1/2/3/4/5% less damage."},
+        {feat: "Armor Specialization", cap: 3, desc: "Increases the effectiveness of Armor Class and Defense by 5/10/15%."},
+        {feat: "Potent Challenge", cap: 3, desc: "You generate 5/10/15% more threat."},
+        {feat: "Powerful Attack", cap: 5, desc: "Increase the damage of your Encounter and Atwill powers by 2/4/6/8/10%."},
+        {feat: "Grit", cap: 3, desc: "Gain 1/2/3% of your Max {k:HP} in {k:THP} when you are {k:healed} by a player power. (40 second cooldown)"},
+        {feat: "Pin Down", cap: 3, desc: "The {k:prone} duration of your powers are increased by .1/.2/.3 seconds."},
+        {feat: "Weapon Mastery", cap: 3, desc: "Increases your {k:CritChance} by 1/2/3%."},
+        {feat: "Ubiquitous Shield", cap: 5, desc: "Reduce the damage effects of {k:CA} against you by 5/10/15/20/25%."},
+        {feat: "Improved Vigor", cap: 5, desc: "When less than 50% health, gain 2/4/6/8/10% more {k:APs}."},
+        {feat: "Take Measure", cap: 5, desc: "When you are crit, gain {k:thp} equal to 1/2/3/4/5% of your maximum {k:HP}. (50 second cooldown)"},
+        {feat: "Wrathful Warrior", cap: 5, desc: "When you have Temporary Hitpoints you deal 3/6/9/12/15% more damage."},
+        {feat: "Jagged Blades", cap: 5, desc: "When you critically strike a foe they begin bleeding. This bleed lasts 10 seconds and deals 150/300/450/600/750% of your weapon damage over its duration."},
+        {feat: "Crushing Shield", cap: 5, desc: "Your Shield Slam and Tide of Iron powers now deal 4/8/12/16/20% more damage."},
+        {feat: "Cruel Cut Style", cap: 5, desc: "Cleave now deals 3/6/9/12/15% more damage."},
+        {feat: "Staggering Challenge", cap: 5, desc: "Gain 4/8/12/16/20% damage bonus to Griffon's Wrath when the target has recently been struck by Staggering Challenge empowered Griffon's Wrath. Additionally your damage bonus from Knight's Challenge is increased by 2/4/6/8/10%."},
+        {feat: "Tactical Superiority", cap: 5, desc: "Combat Superiority deals 1/2/3/4/5% more damage. At 5th tier of this feat, Combat Superiority will not require that the target hits you first."},
+        {feat: "Menacing Impact", cap: 5, desc: "Villain's Menace now has 1/2/3/4/5 feet more range and both Terrifying Impact and Villain's Menace now deal 2/4/6/8/10% more damage."},
+        {feat: "Reckless Attacker", cap: 1, desc: "When struck in combat you gain Reckless Attacker. Reckless Attacker increases your damage by 5% and Critical chance by 2%. Reckless Attacker lasts 10 seconds and stacks up to 5 times."},
+        {feat: "Armor of Bahamut", cap: 5, desc: "While {k:Stamina} is below 30% of max you take 2/4/6/8/10% less damage from all sources."},
+        {feat: "Plate Agility", cap: 5, desc: "You gain 1/2/3/4/5% chance to Deflect attacks."},
+        {feat: "Shield Defense", cap: 5, desc: "Gain 1/2/3/4/5 to AC."},
+        {feat: "Unshakable Line", cap: 5, desc: "Each ally within 20' of you increases your {k:Stamina} Regen by 2/4/6/8/10%."},
+        {feat: "Devoted Protector", cap: 5, desc: "When you block an attack you gain 1/2/3/4/5% increased {k:DeflectChance} for 6 seconds."},
+        {feat: "Shieldmaster", cap: 5, desc: "{k:Guarding} drains {k:stamina} 2/4/6/8/10% more slowly."},
+        {feat: "Brawling Warrior", cap: 5, desc: "Knight's Valor increases your {k:Dres} by 1/2/3/4/5% and Enforced Threat deals an additional 2/4/6/8/10% damage and threat."},
+        {feat: "Balanced Shield Fighter", cap: 5, desc: "Your Shield Slam and Aggravating Strike At Wills deal 3/6/9/12/15% additional damage."},
+        {feat: "Overwhelming Impact", cap: 5, desc: "Supremacy of Steel and Terrifying Impact now temporarily reduces {k:Dres} by 1/2/3/4/5% on affected targets."},
+        {feat: "Iron Guard", cap: 1, desc: "With every melee hit on an enemy, you reduce its damage by 5%. Maximum 20% damage reduction."},
+        {feat: "Fight On", cap: 5, desc: "Encounter cooldowns reduced by 2/4/6/8/10%."},
+        {feat: "Crushing Pin", cap: 5, desc: "Your control powers cause the target to take 2/4/6/8/10% bonus damage for 3 seconds."},
+        {feat: "Daunting Challenge", cap: 5, desc: "{k:marked} targets now deal 2/4/6/8/10% less damage to your allies, but still deal full damage to you."},
+        {feat: "Rousing Speech", cap: 5, desc: "Allies within 30' of you gain {k:APs} 1/2/3/4/5% faster."},
+        {feat: "United", cap: 5, desc: "Allies within 30' of you take 1/2/3/4/5% less {k:rDamage}."},
+        {feat: "Inspiring Leader", cap: 5, desc: "Into the Fray increases the damage dealt by {k:team} members by 1/2/3/4/5%"},
+        {feat: "Powerful Strike", cap: 5, desc: "Lunging Strike provides 4/8/12/16/20% more threat and has a 20/40/60/80/100% chance to interrupt your target."},
+        {feat: "Surging Tide", cap: 5, desc: "Tide of Iron's debuff also reduces the amount of physical damage they deal to you by 2/4/6/8/10%."},
+        {feat: "Terrifying Menace", cap: 5, desc: "Anvil of Doom now has a 20/40/60/80/100% chance to stun the target for 1 second."},
+        {feat: "Martial Mastery", cap: 1, desc: "Taking damage now builds {k:Aps} for yourself and allies within 50'. You gain a bonus to this value based on your {k:Dres}."}
+    ],
+    [ // Hunter Ranger
+        {feat: "Predatory Action", cap: 5, desc: "Your Daily powers deal 1/2/3/4/5% additional damage."},
+        {feat: "Weapon Mastery", cap: 3, desc: "Increases your {k:CritChance} by 1/2/3%."},
+        {feat: "Toughness", cap: 3, desc: "Increases your maximum {k:HP} by 3/6/9%."},
+        {feat: "Swift Footwork", cap: 5, desc: "Your {k:Stamina} regenerates 2/4/6/8/10% faster."},
+        {feat: "Battlewise", cap: 3, desc: "You create 2/4/6% less threat."},
+        {feat: "Agile Combatant", cap: 3, desc: "After switching {k:Stances}, deal 1/2/3% more damage for 5 seconds."},
+        {feat: "Endless Assault", cap: 3, desc: "Your Encounter powers deal 2/4/6% more damage."},
+        {feat: "Nature's Enhancement", cap: 5, desc: "When switching to {k:MeleeStance}, increase your {k:DeflectSev} by 1/2/3/4/5% for 5 seconds."},
+        {feat: "Lucky Skirmisher", cap: 3, desc: "Increases your {k:DeflectChance} by 1/2/3%."},
+        {feat: "Scoundrel Training", cap: 3, desc: "Your At-Will powers deal 3/6/9% more damage to foes not targeting you."},
+        {feat: "Disciple of Dexterity", cap: 3, desc: "Increase the amount of bonus damage Dexterity gives you by 2/4/6%."},
+        {feat: "Extra Action", cap: 5, desc: "Increases your {k:AP} gain by 2/4/6/8/10%."},
+        {feat: "Ghostwalker", cap: 5, desc: "While in {k:RangedStance}, recover {k:stamina} 5/10/15/20/25% faster."},
+        {feat: "Keen Eye", cap: 5, desc: "Your Ranged powers generate 1/2/3/4/5% more AP."},
+        {feat: "Broadhead Arrows", cap: 5, desc: "While in {k:RangedStance}, gain 1/2/3/4/5% Critical Chance."},
+        {feat: "Hasty Retreat", cap: 5, desc: "When you take damage from a foe you gain 5/10/15/20/25% more move speed for 6 seconds."},
+        {feat: "Longshot", cap: 5, desc: "Your critical ranged attacks also deal 20/40/60/80/100% of your weapon damage as Piercing damage. This bonus is tripled for encounter powers and is multiplied by 5 for dailies. Piercing damage is Physical damage that cannot be resisted or deflected."},
+        {feat: "Unflinching Aim", cap: 5, desc: "Your Ranged powers deal 4/8/12/16/20% more damage."},
+        {feat: "Bottomless Quiver", cap: 5, desc: "Your Ranged powers have 6/12/18/24/30% shorter cooldowns."},
+        {feat: "Rising Focus", cap: 5, desc: "Ranged Critical Strikes grant 1/2/3/4/5% Critical Severity and 1/2/3/4/5% more Power. Stacks 3 times. Lasts 6 seconds."},
+        {feat: "Stillness of the Forest", cap: 5, desc: "Your Ranged damage is increased the farther you get from your target. Max 2/4/6/8/10%. Additionally, while no foes are within 25 feet of you, you have 5/10/15/20/25% increased chance to crit."},
+        {feat: "Predator", cap: 1, desc: "Using a ranged encounter power on a foe applies Prey to your target. You deal 50% additional damage to your Prey. You may only have 1 Prey at a time and cannot reapply Prey until it expires. Prey lasts 20 seconds or until the Prey dies."},
+        {feat: "Bloodletting", cap: 5, desc: "While in {k:MeleeStance} you gain 1/2/3/4/5% more Life Steal."},
+        {feat: "Serpent Weave", cap: 5, desc: "<font style=Tooltip_Mechanic>Shifting</font> lowers Melee cooldowns by .1/.2/.3/.4/.5s."},
+        {feat: "Fluid Hunter", cap: 5, desc: "While in {k:MeleeStance}, increase your Deflect Chance and Critical Chance by .5/1/1.5/2/2.5%"},
+        {feat: "Skirmisher's Gambit", cap: 5, desc: "Your critical chance is reduced by 2/4/6/8/10% but your critical severity is increased by 10/20/30/40/50%."},
+        {feat: "Lucky Blades", cap: 5, desc: "Critically Striking or Deflecting an attack grants you Lucky Blades for 6 seconds, which increases your AP generation by 2/4/6/8/10% and your Encounter power damage by 3/6/9/12/15%."},
+        {feat: "Piercing Blade", cap: 5, desc: "Melee attacks deal an additional 3/6/9/12/15% damage as Piercing damage. Piercing damage is Physical damage that cannot be resisted or deflected."},
+        {feat: "Wilds Medicine", cap: 5, desc: "Deflecting attacks cause the Hunter to be healed for 1/2/3/4/5% of their HP over 15 seconds. This effect can stack up to 10 times. You can only gain one stack of Wilds Medicine every second. <br><br>This feat is half as effective in PVP."},
+        {feat: "Scything Blades", cap: 5, desc: "Melee attacks deal 1/2/3/4/5% more Damage, and an additional 1/2/3/4/5% more Damage for each foe within 25 feet."},
+        {feat: "Battle Crazed", cap: 5, desc: "Melee Attacks grant .6/1.2/1.8/2.4/3% more {k:DeflectChance} and Melee {k:rDamage}. This effect stacks up to 5 times. Lasts 6 seconds."},
+        {feat: "Blade Hurricane", cap: 1, desc: "Using a Melee Encounter Power grants Flurry. Flurry causes your next Melee At-Will to strike two additional times for 5% additional damage.  Flurry can only be triggered once every 5 seconds."},
+        {feat: "Fleet Stance", cap: 5, desc: "When you switch stances you move 2/4/6/8/10% faster for 6 seconds."},
+        {feat: "Readied Stance", cap: 5, desc: "When you switch stances you generate 1/2/3/4/5% more AP for several seconds."},
+        {feat: "Deft Strikes", cap: 5, desc: "Your Melee encounter powers cause your next Ranged encounter power to deal 2/4/6/8/10% more damage. Your Ranged encounter powers cause your next Melee encounter power to deal 2/4/6/8/10% more damage."},
+        {feat: "Trapper's Cunning", cap: 5, desc: "Your critical strikes have a 5/10/15/20/25% chance to apply Weak Grasping Roots."},
+        {feat: "Forestbond", cap: 5, desc: "When you apply Grasping Roots you reduce the cooldown of all of your currently recharging powers by 1/2/3/4/5%"},
+        {feat: "Ancient Roots", cap: 5, desc: "Your Weak Grasping Roots now last .5/1/1.5/2/2.5 seconds longer. Your Strong Grasping Roots now last 1/2/3/4/5 seconds longer. This benefit is halved on players."},
+        {feat: "Swiftness of the Fox", cap: 5, desc: "Your Melee Encounter & At-Will powers shorten the cooldown of your Ranged Encounter powers by 3/6/9/12/15%.<br><br>Your Ranged Encounter & At-Will powers shorten the cooldown of your Melee Encounter powers by 3/6/9/12/15%.<br><br>Your Daily powers shorten the cooldown of all your Encounter powers by 3/6/9/12/15%."},
+        {feat: "Thorned Roots", cap: 5, desc: "Your Strong Grasping Roots are upgraded to Thorned Roots. Thorned Roots deal 40/80/120/160/200% of your Main Hand weapon damage every second. When hitting a control immune target, an additional 250/300/350/400/450% of your Main Hand weapon damage is dealt immediately."},
+        {feat: "Serpent's Bite", cap: 5, desc: "Your Aspect of the Serpent Class Feature now provides 1/2/3/4/5% more damage per stack. Additionally these stacks also provide .5/1/1.5/2/2.5% Critical chance per stack."},
+        {feat: "Biting Snares", cap: 1, desc: "When you apply Grasping Roots or Thorned Roots you gain \"Biting Snares\". Biting Snares causes your next stance shift to generate 10% of your AP and increase your damage by 15% for 10 seconds. This effect can only be trigged once every 10 seconds."}
+    ],
+    [ // Oathbound Paladin
+        {feat: "Divine Action", cap: 5, desc: "Activating Divine Call now generates 1/2/3/4/5% of your Max AP."},
+        {feat: "Weapon Mastery", cap: 3, desc: "Increases your {k:CritChance} by 1/2/3%."},
+        {feat: "Toughness", cap: 3, desc: "Increases your maximum {k:HP} by 3/6/9%."},
+        {feat: "Light's Shield", cap: 5, desc: "Your Damage Resistance is increased by .5/1/1.5/2/2.5%."},
+        {feat: "Exemplar's Haste", cap: 3, desc: "Your Encounter Powers recharge 2/4/6% faster."},
+        {feat: "Wrathful Strikes", cap: 3, desc: "Your At Will powers deal 2/4/6% more damage."},
+        {feat: "Dominating Presence", cap: 5, desc: "Your Auras have a 2/4/6/8/10’ increased radius."},
+        {feat: "Impassioned Pleas", cap: 3, desc: "You generate Divine Call energy 2/4/6% faster."},
+        {feat: "Divine Attunement", cap: 3, desc: "You receive 2/4/6% more healing from spells."},
+        {feat: "Steadfast", cap: 5, desc: "Each point of Constitution now grants an additional .5/1/1.5/2/2.5% Maximum Hit Points."},
+        {feat: "Divine Wisdom", cap: 3, desc: "Each point of Wisdom now increases healing by an additional .33/.66/1%."},
+        {feat: "Force of Will", cap: 3, desc: "Each point of Charisma now increases your Critical chance by an additional .33/.66/1%."},
+        {feat: "Swift Flash", cap: 5, desc: "When you are struck by a foe you have a chance to trigger a Flash, granting you increased movement speed of 6/12/18/24/30% for 4 seconds. This can only happen once every ten seconds."},
+        {feat: "Bound By Light", cap: 5, desc: "Your Control Strength is increased by 2/4/6/8/10%."},
+        {feat: "Flash of Light", cap: 5, desc: "Your encounter powers have a 5/10/15/20/25% chance to reduce the cooldown of your nearby allies' encounter powers by 10%."},
+        {feat: "Radiant Champion", cap: 5, desc: "Your very presence inspires your allies. When you have at least 2 other allies within 30' of you, all of you gain 5/10/15/20/25% more movement speed and 1/2/3/4/5% Cooldown Reduction."},
+        {feat: "Stem the Tide", cap: 5, desc: "While no allies are within 30' of you, all foes who come within 30' of you are snared by 5/10/15/20/25% and take 1/2/3/4/5% more damage from all sources."},
+        {feat: "Echoes of Light", cap: 5, desc: "Your At-Will powers have a 2/4/6/8/10% chance to trigger Echo on you. Echo makes your next encounter power instantly recharge all of your encounter powers."},
+        {feat: "Beacon of Hope", cap: 5, desc: "Activating a Daily power causes you to become a beacon of hope for 6 seconds. Randomly 3 allies within 30' who have taken damage will be healed for 50/100/150/200/250% of your weapon damage every 2 seconds."},
+        {feat: "Purifying Fire", cap: 5, desc: "Your At-Will powers apply \"Purifying Fire\" to foes. \"Purifying Fire\" stacks up to 5 times, dealing a 2/4/6/8/10% weapon damage each time a stack is applied. This damage is doubled for each stack applied to the target. Purifying Fire lasts 60 seconds, but is removed when you strike the target with an encounter power."},
+        {feat: "Prism", cap: 5, desc: "Activating a daily power causes you to become a prism for 4/8/12/16/20 seconds. During this time, any time you are healed, all allies within 30' are also healed for this amount. This effect will not trigger from {k:hot} effects."},
+        {feat: "Vengeful Judge", cap: 1, desc: "Your Divine Call now also applies \"Judge\" to yourself for 10 seconds. \"Judge\" increases your damage dealt by 35% as well as reducing the cooldown on your currently recharging powers by 35%. Your encounter powers have a chance to immediately grant you a charge of Divine Call."},
+        {feat: "Holy Resurgence", cap: 5, desc: "While your stamina is below 20% it regenerates 6/12/18/24/30% faster."},
+        {feat: "Unflinching Resolve", cap: 5, desc: "Your Control Resistance is increased by 2/4/6/8/10%."},
+        {feat: "To My Side!", cap: 5, desc: "Allies within 150' of you but farther than 30' from you move 3/6/9/12/15% faster."},
+        {feat: "Sanctity", cap: 5, desc: "When you are healed you gain a burst of Defense, Deflect, or Regeneration for 15 seconds. This value is equal to 12/24/36/48/60 times your Level. After you have benefitted from a burst of stat you cannot benefit from this feat for 30 seconds."},
+        {feat: "Martyr's Blood", cap: 5, desc: "When you take damage from a foe you have a 10% chance to apply \"Martyr's Blood\" to them. \"Martyr's Blood\" causes them to deal 2/4/6/8/10% less damage for 8 seconds."},
+        {feat: "Exemplar of the Light", cap: 5, desc: "Your daily powers place a shield on you that absorbs 300/600/900/1200/1500% of your weapon damage before breaking. <br><br> This shield expires when combat ends and does not stack."},
+        {feat: "Vigilance", cap: 5, desc: "When your encounter powers come off cooldown you gain a stack of Vigilant. When Vigilant reaches 5 stacks you may consume them by activating your Divine Call. Consuming stacks of Vigilant grants you a shield for 8 seconds that absorbs 5/10/15/20/25% of all incoming damage."},
+        {feat: "Head Unbowed", cap: 5, desc: "As your Hit Points are reduced you gain up to 10/20/30/40/50% more Divine Call Energy generation."},
+        {feat: "Avenger's Presence", cap: 5, desc: "When an ally is damaged by a foe you have a chance to gain \"Avenger\" for 6 seconds. \"Avenger\" causes your At Will attacks to reduce the cooldown on your currently cooling down encounter powers by .5/1/1.5/2/2.5%."},
+        {feat: "Holy Barrier", cap: 1, desc: "As you take damage you will slowly gain stacks of Barrier. When you activate your Divine Call all stacks of Barrier are consumed to give you a shield equal to .5% of your Max HP per stack of Barrier consumed. After activating Barrier you cannot gain stacks of Barrier again for 10 seconds."},
+        {feat: "Gifts of Light", cap: 5, desc: "You heal for 2/4/6/8/10% more."},
+        {feat: "Seraphim", cap: 5, desc: "When you take damage you have a chance to gain \"Seraphim\" for 8 seconds. \"Seraphim\" increases the strength of your heals by 3/6/9/12/15%."},
+        {feat: "Light Touched", cap: 5, desc: "Healing spells now generate 2/4/6/8/10% more AP."},
+        {feat: "Aura Gifts", cap: 5, desc: "Allies within 30' of you gain 5/10/15/20/25% of your Power. They must remain within 30' of you for at least 6 seconds to gain this buff."},
+        {feat: "Share the Light", cap: 5, desc: "Allies you heal receive 3/6/9/12/15% more healing from you for 4 seconds."},
+        {feat: "Healer's Touch", cap: 5, desc: "You heal for up to 10/20/30/40/50% more depending on how close to the target you are. This feat only works when healing allies."},
+        {feat: "Echoing Heal", cap: 5, desc: "Healing an ally places an Echoing Heal on them. After 2 seconds it heals them for 40/80/120/160/200% of your weapon damage before jumping to a new nearby damaged ally. If there are no damaged allies nearby this heal does not jump. Can only jump a maximum of 3 times. You gain a charge of this feat every 10 seconds while in combat."},
+        {feat: "Deific Intervention", cap: 5, desc: "If you are downed all nearby allies are fully healed and are granted maximum damage resistance for 4 seconds. Can only trigger once every 300/270/240/210/180 seconds."},
+        {feat: "Holy Bonds", cap: 5, desc: "Your Recovery is increased by 4/8/12/16/20% for each ally within 30'. Maximum 5 allies."},
+        {feat: "Redemption", cap: 1, desc: "Every 10 seconds in combat you gain \"Redemption\". Activating your Divine Call will consume \"Redemption\" and cause you to pulse out a heal every second for 3 seconds. This heal restores 500% of your Weapon Damage divided equally among damaged allies within 100'. You can have a maximum of 3 stacks of Redemption."}
+    ],
+    [ // Scourge Warlock
+        {feat: "Energizing Curse", cap: 5, desc: "Gain 6/12/18/24/30% more {k:Aps} when attacking {k:Cursed} targets with At Wills."},
+        {feat: "Weapon Mastery", cap: 3, desc: "Increases your {k:CritChance} by 1/2/3%."},
+        {feat: "Toughness", cap: 3, desc: "Increases your maximum {k:HP} by 3/6/9%."},
+        {feat: "Shadow Fold", cap: 5, desc: "Shadow Slip consumes 2/4/6/8/10% less stamina."},
+        {feat: "Empowered Rituals", cap: 3, desc: "Your Encounter powers deal 2/4/6% more damage."},
+        {feat: "Battlewise", cap: 3, desc: "You create 2/4/6% less threat."},
+        {feat: "Determined Casting", cap: 5, desc: "Encounter cooldowns reduced by 2/4/6/8/10%."},
+        {feat: "Desperate Restoration", cap: 3, desc: "When under 30% {k:hp}, {k:heals} are 5/10/15% more effective on you."},
+        {feat: "Soul Reaping", cap: 3, desc: "Increases your {k:rLifeStealChance} by 1/2/3%."},
+        {feat: "Blood Pact of Cania", cap: 5, desc: "Increase the amount of bonus damage Constitution gives you by 1/2/3/4/5%."},
+        {feat: "Devastating Critical", cap: 3, desc: "Increases your {k:CritSev} by 5/10/15%."},
+        {feat: "Scornful Curse", cap: 3, desc: "Increases the damage dealt by {k:lcurse} and Deadly Curse 10/20/30%."},
+        {feat: "Daughter's Promises", cap: 5, desc: "When a {k:Cursed} target is killed, you deal 20/40/60/80/100% of your weapon damage as Necrotic damage to up to 3 targets near the recently slain."},
+        {feat: "Critical Promise", cap: 5, desc: "After a critical hit, your next attack will also deal 10/20/30/40/50% of your weapon damage as Necrotic damage."},
+        {feat: "Offering to the Prisoner", cap: 5, desc: "When a {k:cursed} target is killed, your damage is increased by 1/2/3/4/5% for 15 seconds."},
+        {feat: "Infernal Wrath", cap: 5, desc: "Your {k:LCurse} also causes the target to have 1/2/3/4/5% less {k:DRes}."},
+        {feat: "Helltouched", cap: 5, desc: "When foes deal {k:rDamage} to you they become Helltouched for 10 seconds. Foes who are Helltouched take 2/4/6/8/10% more {k:rDamage} from you."},
+        {feat: "Killing Curse", cap: 5, desc: "When attacking a {k:cursed} target, you deal an additional 3/6/9/12/15% of your weapon damage."},
+        {feat: "Executioner's Gift", cap: 5, desc: "At-Will and Encounter powers deal 3/6/9/12/15% bonus damage as target's health diminishes."},
+        {feat: "Brutal Curse", cap: 5, desc: "Your {k:Wcurse} increases your damage against affected targets by an additional 2/4/6/8/10%."},
+        {feat: "Murderous Flames", cap: 5, desc: "Killing Flames deals 6/12/18/24/30% of its damage to foes within 20 feet of the primary target. This damage is split equally among the affected targets. If there are no other targets, the primary target takes all the damage."},
+        {feat: "Creeping Death", cap: 1, desc: "When you deal damage with your At-Will, Encounter, or Daily powers to targets affected by your {k:WCurse} they are afflicted with Creeping Death. Creeping Death deals 60% additional damage as Necrotic damage over 8 seconds. Creeping Death stacks."},
+        {feat: "Parting Blasphemy", cap: 5, desc: "When a {k:Curse} is removed from a target, deal 1.2/2.4/3.6/4.8/6% of your weapon damage to that target."},
+        {feat: "Relentless Curse", cap: 5, desc: "When a target affected by {k:WCurse} is killed, surrounding targets have a 5/10/15/20/25% chance to be afflicted with an {k:Icurse}. "},
+        {feat: "Syphoning Curse", cap: 5, desc: "When a {k:Cursed} target is killed, the slayer of that target is {k:healed} for 20/40/60/80/100% of your weapon damage every second for 3 seconds."},
+        {feat: "Mocking Spirit", cap: 5, desc: "Your Soul Puppet now deals 200/400/600/800/1000% more threat."},
+        {feat: "Spiritfire", cap: 5, desc: "Foes near your Soul Puppet now also take damage 10/20/30/40/50% of your Weapon Damage as damage every second."},
+        {feat: "Warding Spirits", cap: 5, desc: "While you have a Soul Puppet active you take 2/4/6/8/10% less damage."},
+        {feat: "Burning Puppets", cap: 5, desc: "Your Soul Puppets have a 5/10/15/20/25% chance to apply {k:Lcurse} when they attack a target.<br><br>Your Soul Puppets deal 2/4/6/8/10% more damage to targets affected by {k:Lcurse}."},
+        {feat: "Ghastly Commander", cap: 5, desc: "While you have a Soul Puppet active you deal 2/4/6/8/10% more damage and Life Steal for .4/.8/1.2/1.6/2% more."},
+        {feat: "Wrathful Souls", cap: 5, desc: "Your Soul Puppets deal 20/40/60/80/100% more damage, and their attacks now siphon some of that health to you, healing you for 2/4/6/8/10% of their damage."},
+        {feat: "Soul Desecration", cap: 1, desc: "Your Soul Puppet moves faster and no longer dissipates after 5 hits. Targets marked by {k:WCurse} are corrupted and will spawn a Soul Puppet when killed. Additionally every 15 seconds, the next time you deal damage you spawn a Soul Puppet."},
+        {feat: "Vengeful Curse", cap: 5, desc: "When damaged, you have a 2/4/6/8/10% chance to apply {k:LCurse} to your attacker."},
+        {feat: "Hope Stealer", cap: 5, desc: "On critical hits, your Life Steal stat is momentarily increased by 2/4/6/8/10 points per character level."},
+        {feat: "Compounded Soul", cap: 5, desc: "Striking Cursed foes has a chance to grant 1/2/3/4/5% of the Warlock's Max HP as {k:thp} to allies near the Warlock."},
+        {feat: "Soul Breaker", cap: 5, desc: "When a foe dies within 30' of the Warlock, a random nearby ally gains 2/4/6/8/10% of their AP."},
+        {feat: "Dark Revelry", cap: 5, desc: "When you Life Steal there is a chance to gain Revelry. Revelry increases the Move Speed and Power of nearby allies by 4/8/12/16/20% for 5 seconds."},
+        {feat: "Aura of Despair", cap: 5, desc: "Enemies within 20ft of you deal 1/2/3/4/5% less damage."},
+        {feat: "Aura of Cruelty", cap: 5, desc: "Allies within 20 ft of you Life Steal for 1/2/3/4/5% more."},
+        {feat: "Eldritch Momentum", cap: 5, desc: "You restore 1/2/3/4/5% stamina each time you take damage."},
+        {feat: "Darkness", cap: 5, desc: "Enemies damaged by Blades of Vanquished Armies briefly deal 2/4/6/8/10% less damage to you."},
+        {feat: "Soul Bonding", cap: 1, desc: "Your powers now heal your allies for a percentage of their damage equal to your Life Steal chance. This effect is 30% as effective on Area of Effect powers. The healing component of your Vampiric Embrace now also heals nearby allies for 100% of its value."}
+    ],
+    [ // Trickster Rogue
+        {feat: "Action Advantage", cap: 5, desc: "2/4/6/8/10% additional {k:APs} for dealing {k:CA} damage."},
+        {feat: "Weapon Mastery", cap: 3, desc: "Increases your {k:CritChance} by 1/2/3%."},
+        {feat: "Toughness", cap: 3, desc: "Increases your maximum {k:HP} by 3/6/9%."},
+        {feat: "Swift Footwork", cap: 5, desc: "Your {k:Stamina} regenerates 2/4/6/8/10% faster."},
+        {feat: "Battlewise", cap: 3, desc: "You create 2/4/6% less threat."},
+        {feat: "Cunning Ambusher", cap: 3, desc: "You deal 2/4/6% more damage for 6 seconds after leaving {k:stealth}."},
+        {feat: "Endless Assault", cap: 3, desc: "Your Encounter powers deal 2/4/6% more damage."},
+        {feat: "Twilight Adept", cap: 5, desc: "Restores 2/4/6/8/10% of your {k:Stealth} Meter when you Dodge Roll."},
+        {feat: "Lucky Skirmisher", cap: 3, desc: "Increases your {k:DeflectChance} by 1/2/3%."},
+        {feat: "Scoundrel Training", cap: 3, desc: "Your At-Will powers deal 3/6/9% more damage to foes not targeting you."},
+        {feat: "Disciple of Strength", cap: 3, desc: "Increase the amount of bonus damage Strength gives you by 2/4/6%."},
+        {feat: "Improved Cunning Sneak", cap: 5, desc: "Your {k:stealth} lasts 4/8/12/16/20% longer."},
+        {feat: "Flashing Blades", cap: 5, desc: "Your At-Will powers deal 1/2/3/4/5% more damage when your {k:Stealth} meter isn't full."},
+        {feat: "Shady Preparations", cap: 5, desc: "Entering {k:Stealth} reduces all of your cooldowns by 2/4/6/8/10%."},
+        {feat: "Knife's Edge", cap: 5, desc: "Activating a Daily power reduces all of your cooldowns by 3/6/9/12/15%."},
+        {feat: "Grinning Steel", cap: 5, desc: "Attacks from behind your target have 1/2/3/4/5% increased {k:CritChance}."},
+        {feat: "Blood Soaked Blades", cap: 5, desc: "If a foe you have recently damaged dies, you gain Blood Soaked Blades, which causes your attacks to deal 10/20/30/40/50% of your Weapon {k:rDamage} as bonus Physical {k:rDamage}."},
+        {feat: "Return to Shadows", cap: 5, desc: "While behind your target, dealing damage with Encounter Powers refills 5/10/15/20/25% of your {k:Stealth} meter.<br><br>This effect cannot trigger when leaving {k:Stealth}."},
+        {feat: "Gutterborn's Touch", cap: 5, desc: "While behind your target, dealing damage grants you the Gutterborn effect for 6 seconds.<br><br>Gutterborn: You ignore an additional 2/4/6/8/10% of your target's armor.  Your {k:Power} rating increases by 2/4/6/8/10%.<br><br>This effect cannot stack."},
+        {feat: "Ambusher's Haste", cap: 5, desc: "While in {k:Stealth}, you deal up to 5/10/15/20/25% more damage.  This bonus diminishes as your {k:Stealth} meter drains."},
+        {feat: "Shadowy Opportunity", cap: 5, desc: "When you deal damage from {k:Stealth}, you deal an additional 20/40/60/80/100% of your weapon damage as {k:PiercingDam}.  {k:PiercingDam} cannot be deflected and ignores armor."},
+        {feat: "One with the Shadows", cap: 1, desc: "Every 15 seconds, you gain the One with the Shadows effect.<br><br>One with the Shadows: The next time you deal damage with an Encounter power, your {k:Stealth} meter is refilled.  For 10 seconds after, your Encounter powers deal 20% more damage."},
+        {feat: "Roll with the Punches", cap: 5, desc: "Increases your {k:DeflectChance} by .5/1/1.5/2/2.5%."},
+        {feat: "Bloody Brawler", cap: 5, desc: "Increases your {k:Lifesteal} by .5/1/1.5/2/2.5%."},
+        {feat: "Survivor", cap: 5, desc: "You gain 2/4/6/8/10% {k:DeflectChance} while below 30% health."},
+        {feat: "Back Alley Tactics", cap: 5, desc: "When your {k:AP} is empty you deal 5/10/15/20/25% more {k:rDamage}. This bonus diminishes as you gain {k:AP}."},
+        {feat: "Master Infighter", cap: 5, desc: "You take 2/4/6/8/10% less damage from attacks."},
+        {feat: "Savage Blows", cap: 5, desc: "Dealing damage to foes increases your {k:Lifesteal} by .2/.4/.6/.6/1% for 3 seconds. Stacks up to 5 times."},
+        {feat: "Concussive Strikes", cap: 5, desc: "Your Critical Strikes and attacks from behind the target {k:Daze} foes for .5/1/1.5/2/2.5 second. Foes can only be {k:Dazed} this way once every 5 seconds. <br><br>This feat is half as effective on players."},
+        {feat: "Low Blows", cap: 5, desc: "You deal 5/10/15/20/25% more damage to foes who are affected by a Control effect."},
+        {feat: "Mocking Gesture", cap: 5, desc: "Entering {k:Stealth} increases your {k:DeflectChance} by 2/4/6/8/10% for 10 seconds."},
+        {feat: "Skullcracker", cap: 1, desc: "Every 15 seconds, you gain the Skullcracker effect.<br><br>Skullcracker: Your next Encounter power now also {k:Dazes} the target for 4 seconds.  Your attacks extend this {k:Daze} by .5 seconds, up to a maximum of 2 additional seconds.  You deal 25% more damage to targets affected by this {k:Daze}. Increases movement speed by 15%.<br><br>The daze from this feat is half as effective on players."},
+        {feat: "Arterial Cut", cap: 5, desc: "Increases your {k:CritSev} by 3/6/9/12/15% while in {k:Stealth}."},
+        {feat: "Grim Pleasure", cap: 5, desc: "Dealing a Critical Strike increases your {k:Power} rating by 1/2/3/4/5% for 4 seconds.<br><br>This effect cannot stack."},
+        {feat: "Vicious Pursuit", cap: 5, desc: "When you deal damage, your target takes 1/2/3/4/5% more damage from you for 6 seconds.<br><br>This effect cannot stack."},
+        {feat: "Dying Breath", cap: 5, desc: "When a nearby foe dies you gain Dying Breath which increases your {k:Speed} and {k:CritSev} by 5/10/15/20/25%."},
+        {feat: "Deathknell", cap: 5, desc: "You deal 5/10/15/20/25% more damage to foes below 30% HP."},
+        {feat: "Twisted Grin", cap: 5, desc: "When a foe within 30' of you dies, you gain the Twisted Grin effect for 10 seconds.<br><br>Twisted Grin: Your next attack deals 2.5/5/7.5/10/12.5% more damage.  This bonus is doubled while in {k:Stealth}."},
+        {feat: "Last Moments", cap: 5, desc: "You deal 5/10/15/20/25% more damage to foes who are below 40% health. This threshold is increased to 70% while in {k:Stealth}."},
+        {feat: "Exposed Weakness", cap: 5, desc: "While in {k:Stealth}, you ignore an additional 5/10/15/20/25% of your target's armor."},
+        {feat: "Shadowborn", cap: 5, desc: "Entering {k:Stealth} increases the {k:Power} rating of your next attack by 20/40/60/80/100%."},
+        {feat: "Shadow of Demise", cap: 1, desc: "While in {k:Stealth}, your Encounter powers now also add the Shadow of Demise effect to the target for 6 seconds.  This effect is powered up by further damage you deal. Additionally, you generate {k:Stealth} 20% faster and no longer have your regeneration interrupted when taking damage.<br><br>Shadow of Demise: When this effect ends, its target takes {k:PiercingDam} equal to 50% of the damage dealt to its target by the Rogue.  {k:PiercingDam} cannot be deflected and ignores armor.<br><br>This effect cannot stack."}
+    ]
+];
+
+var pathFeats = [
+    [ // Control Wizard
+        [ // Master of Flame
+            {feat: "Twisting Immolation", desc: "Targets swept into the air by Furious Immolation are now briefly {k:dazed} for .8/1.6/2.4/3.2/4s after landing.<BR><BR> The debuff from your Combustive Action class feature now lasts  .5/1/1.5/2/2.5s longer as well."},
+            {feat: "Drifting Embers", desc: "Targets affected by Fanning the Flame have a 8/16/24/32/40% chance when damaged by other attacks to spread Smolder to a nearby target."},
+            {feat: "Arcane Burst", desc: "Each target hit by Scorching Burst has a 6/12/18/24/30% chance to add a stack of Arcane Mastery."}
+        ],
+        [ // Spellstorm Mage
+            {feat: "Chilling Control", desc: "Sudden Storm now applies 1/2/3/4/5 stacks of Chill to targets hit by the primary strike."},
+            {feat: "Destructive Wizardry", desc: "When you cast a fully charged Storm Pillar, you gain 1/2/3/4/5% additional damage for 20 seconds. This effect does not stack."},
+            {feat: "Unrestrained Chaos", desc: "Maelstrom of Chaos now also has a chance to apply 6 stacks of {k:Chill} to foes or 5 stacks of {k:ArcaneM} to you every second for 1/2/3/4/5 seconds."}
+        ]
+    ],
+    [ // Devoted Cleric
+        [ // Anointed Champion
+            {feat: "Battle Fervor", desc: "Blessing of Battle's buff now also increases affected target's Power by 3/6/9/12/15% of your Power."},
+            {feat: "Prestigious Exaltation", desc: "Increases duration of Exaltation buff by 2/4/6/8/10% and your heals are increased by 2/4/6/8/10% while you are buffed."},
+            {feat: "Ancient Warding", desc: "When the Anointed Army daily buff ends, the holder is {k:healed} for .6/1.2/1.8/2.4/3% of their max {k:hp}, and gains 1/2/3/4/5% of their total {k:APs}.<BR><BR> In addition, the Anointed Action class feature now lasts 4/8/12/16/20% longer."}
+        ],
+        [ // Divine Oracle
+            {feat: "Second Sight", desc: "When Prophecy of Doom ends, it disperses 5/10/15/20/25% of the damage as a heal to you and all allies near the target."},
+            {feat: "Benefit of Foresight", desc: "Defense bonus from Foresight is increased by 1/2/3/4/5%."},
+            {feat: "Power of the Sun", desc: "Brand of the Sun reduces the targets damage output and their chance to crit by 1/2/3/4/5%."}
+        ]
+    ],
+    [ // Great Weapon Fighter
+        [ // Iron Vanguard
+            {feat: "Reinforced Surge", desc: "Frontline Surge now leaves targets {k:prone} for an additional .1/.2/.3/.4/.5 second, and deals 1/2/3/4/5% more damage."},
+            {feat: "Improved Reaction", desc: "Ferocious Reaction {k:heals} you for an additional 2/4/6/8/10% of your max {k:HP}."},
+            {feat: "Battle Trample", desc: "When Trample the Fallen would cause you to deal more damage, you also gain 5/10/15/20/25% of your weapon damage in threat and deal 5/10/15/20/25% of your weapon damage as Physical Damage."}
+        ],
+        [ // Swordmaster
+            {feat: "Stunning Flourish", desc: "Flourish has an extra 1/2/3/4/5% chance to crit and stuns for (0.2/0.4./0.6/0.8/1) seconds on last hit."},
+            {feat: "Staying Power", desc: "Weapon Master's Strike now also reduces your targets Mitigation to your Encounter powers by 2/4/6/8/10%."},
+            {feat: "Grim Promise", desc: "Crescendo reduces the damage your target deals to you by 3/6/9/12/15% for 10 seconds."}
+        ]
+    ],
+    [ // Guardian Fighter
+        [ // Iron Vanguard
+            {feat: "Reinforced Surge", desc: "Frontline Surge now leaves targets {k:prone} for an additional .1/.2/.3/.4/.5 second, and deals 1/2/3/4/5% more damage."},
+            {feat: "Improved Reaction", desc: "Ferocious Reaction {k:heals} you for an additional 2/4/6/8/10% of your max {k:HP}."},
+            {feat: "Battle Trample", desc: "When Trample the Fallen would cause you to deal more damage, you also gain 5/10/15/20/25% of your weapon damage in threat and deal 5/10/15/20/25% of your weapon damage as Physical Damage."}
+        ],
+        [ // Swordmaster
+            {feat: "Stunning Flourish", desc: "Flourish has an extra 1/2/3/4/5% chance to crit and stuns for (0.2/0.4./0.6/0.8/1) seconds on last hit."},
+            {feat: "Staying Power", desc: "Weapon Master's Strike now also reduces your targets Mitigation to your Encounter powers by 2/4/6/8/10%."},
+            {feat: "Grim Promise", desc: "Crescendo reduces the damage your target deals to you by 3/6/9/12/15% for 10 seconds."}
+        ]
+    ],
+    [ // Hunter Ranger
+        [ // Pathfinder
+            {feat: "Quarry", desc: "You deal 1/2/3/4/5% more damage to targets affected by your Careful Attack or Hunter's Teamwork At-Will powers."},
+            {feat: "Advanced Stalking", desc: "Your Ambush Encounter power can last .5/1/1.5/2/2.5 second(s) longer, and the bleed caused by your Bear Trap Encounter power now deals an additional 10/20/30/40/50% damage."},
+            {feat: "Slasher's Speed", desc: "The {k:AP} cost of your Slasher's Mark daily is reduced by 5/10/15/20/25%, and Pathfinder's Action's movement buff lasts .5/1/1.5/2/2.5 seconds longer."}
+        ],
+        [ // Stormwarden
+            {feat: "Stormcaller's Arrow", desc: "Increases the duration of Split the Sky by 1/2/3/4/5 second(s)."},
+            {feat: "Warden's Courage", desc: "Increase the damage bonus and reduce the damage resistance penalty of Throw Caution by 1/2/3/4/5%."},
+            {feat: "Nature's Fury", desc: "Increase the snare duration of Cold Steel Hurricane by .5/1/1.5/2/2.5 second(s)."}
+        ]
+    ],
+    [ // Oathbound Paladin
+        [ // Oath of Devotion
+            {feat: "Shining Beacon", desc: "When you drop below 50% HP you gain \"Shining Beacon\" for 15 seconds. \"Shining Beacon\" causes you to gain 3/6/9/12/15% shorter Cooldowns for 15 seconds but can only occur once evey 60 seconds."},
+            {feat: "Divine Innervate", desc: "Your Oathbound buff now also increases the Damage Resistance of affected targets by .5/1/1.5/2/2.5% for 8 seconds."},
+            {feat: "Restorative Haste", desc: "You gain 2/4/6/8/10% more Recovery from equipment."}
+        ],
+        [ // Oath of Protection
+            {feat: "Furious Reversal", desc: "When you drop below 50% HP you gain \"Furious Reversal\" for 15 seconds. \"Furious Reversal\" causes you to gain 2/4/6/8/10% Life Steal chance for 15 seconds but can only occur once evey 60 seconds."},
+            {feat: "Stand Fast", desc: "While you are not moving you gain 1/2/3/4/5% Damage Resistance and Deflect Chance."},
+            {feat: "Warrior's Bastion", desc: "You gain 2/4/6/8/10% more Defense from equipment."}
+        ]
+    ],
+    [ // Scourge Warlock
+        [ // Hellbringer
+            {feat: "Gatekeeper's Empowerment", desc: "Gates of Hell now deals 5/10/15/20/25% more damage and generates 10/20/30/40/50% more {k:APs} for each target killed.<br><br> Additionally, the DoT component of Hellish Rebuke now deals 5/10/15/20/25% more damage."},
+            {feat: "Power of the Nine Hells", desc: "The Damage and Damage Resistance buffs provided by Pillar of Power now last for 1/2/3/4/5 seconds after you leave its area, and allies can now receive 10/20/30/40/50% of the buffs' effect."},
+            {feat: "Hellish Condemnation", desc: "Targets affected by your Hellish Rebuke atwill deal 1/2/3/4/5% less damage."}
+        ],
+        [ // Soulbinder
+            {feat: "Burning Soul", desc: "Your {k:SoulSparks} now also increase your damage by .06/.12/.18/.24/.3% per {k:SoulSpark}."},
+            {feat: "Sparkbinder", desc: "The fire spirits summoned by Immolation Spirits now last 1/2/3/4/5 seconds longer and your Immolation Spirits gain an additional 5/10/15/20/25% of your Maximum Hit Points."},
+            {feat: "Vampiric Sparks", desc: "Your Soul Sparks increase your Life Steal by an additional .01/.02/.03/.04/.05% per Spark."}
+        ]
+    ],
+    [ // Trickster Rogue
+        [ // Master Infiltrator
+            {feat: "Sneaky Stabber", desc: "Your Gloaming Cut now restores 2/4/6/8/10% of your {k:stealth} meter."},
+            {feat: "Press the Advantage", desc: "Your Impossible to Catch now also increases your {k:Power} rating by 2/4/6/8/10%."},
+            {feat: "Devastating Shroud", desc: "Shocking Execution now also increases your {k:CritChance} and {k:CritSev} by 2/4/6/8/10% for 6 seconds."}
+        ],
+        [ // Whisperknife
+            {feat: "Distracting Knife", desc: "Disheartening Strike now also increases your damage against the target by 1/2/3/4/5%, and reduces the damage affected enemies deal to your allies by 1/2/3/4/5%."},
+            {feat: "Seething Knives", desc: "Hateful Knives now also restores 5/10/15/20/25% of your {k:Stealth} meter.  For 8 seconds afterward, when you deal damage to the target of Hateful Knives, you also regain 1/2/3/4/5% of your {k:Stealth} meter.<br><br>Razor Action now deals an additional 10/20/30/40/50% of its damage as a brief {k:DoT} effect."},
+            {feat: "Determined Pursuit", desc: "The first strike of Vengeance's Pursuit now has a 20/40/60/80/100% chance to {k:Interrupt} your target.  The second strike now {k:Slows} your target by 8/16/24/32/40% for 4 seconds."}
+        ]
+    ]
+];
+
+function markup(string) {
+    "use strict";
+    string = string.replace(/\{k:team\}/gi, "party");
+
+    string = string.replace(/\{k:ap\}/gi, "<span class=\"keyword\">Action Point</span>");
+    string = string.replace(/\{k:aps\}/gi, "<span class=\"keyword\">Action Points</span>");
+    string = string.replace(/\{k:ca\}/gi, "<span class=\"keyword\">Combat Advantage</span>");
+    string = string.replace(/\{k:critchance\}/gi, "<span class=\"keyword\">Critical Chance</span>");
+    string = string.replace(/\{k:critsev\}/gi, "<span class=\"keyword\">Critical Severity</span>");
+    string = string.replace(/\{k:daze\}/gi, "<span class=\"keyword\">Daze</span>");
+    string = string.replace(/\{k:dazed\}/gi, "<span class=\"keyword\">Dazed</span>");
+    string = string.replace(/\{k:dazes\}/gi, "<span class=\"keyword\">Dazes</span>");
+    string = string.replace(/\{k:deflectchance\}/gi, "<span class=\"keyword\">Deflection Chance</span>");
+    string = string.replace(/\{k:deflectsev\}/gi, "<span class=\"keyword\">Deflect Severity</span>");
+    string = string.replace(/\{k:dot\}/gi, "<span class=\"keyword\">Damage Over Time</span>");
+    string = string.replace(/\{k:dres\}/gi, "<span class=\"keyword\">Damage Resistance</span>");
+    string = string.replace(/\{k:hp\}/gi, "<span class=\"keyword\">Hit Points</span>");
+    string = string.replace(/\{k:heal\}/gi, "<span class=\"keyword\">Heal</span>");
+    string = string.replace(/\{k:healed\}/gi, "<span class=\"keyword\">Healed</span>");
+    string = string.replace(/\{k:healing\}/gi, "<span class=\"keyword\">Healing</span>");
+    string = string.replace(/\{k:heals\}/gi, "<span class=\"keyword\">Heals</span>");
+    string = string.replace(/\{k:hot\}/gi, "<span class=\"keyword\">Heal Over Time</span>");
+    string = string.replace(/\{k:interrupt\}/gi, "<span class=\"keyword\">Interrupt</span>");
+    string = string.replace(/\{k:lifesteal\}/gi, "<span class=\"keyword\">Life Steal</span>");
+    string = string.replace(/\{k:marked\}/gi, "<span class=\"keyword\">Marked</span>");
+    string = string.replace(/\{k:piercingdam\}/gi, "<span class=\"keyword\">Piercing Damage</span>");
+    string = string.replace(/\{k:power\}/gi, "<span class=\"keyword\">Power</span>");
+    string = string.replace(/\{k:prone\}/gi, "<span class=\"keyword\">Prone</span>");
+    string = string.replace(/\{k:slow\}/gi, "<span class=\"keyword\">Slow</span>");
+    string = string.replace(/\{k:slows\}/gi, "<span class=\"keyword\">Slows</span>");
+    string = string.replace(/\{k:speed\}/gi, "<span class=\"keyword\">Run Speed</span>");
+    string = string.replace(/\{k:stamina\}/gi, "<span class=\"keyword\">Stamina</span>");
+    string = string.replace(/\{k:thp\}/gi, "<span class=\"keyword\">Temporary Hit Points</span>");
+
+    string = string.replace(/\{k:arcanem\}/gi, "<span class=\"mechanic\">Arcane Mastery</span>");
+    string = string.replace(/\{k:chill\}/gi, "<span class=\"mechanic\">Chill</span>");
+    string = string.replace(/\{k:curse\}/gi, "<span class=\"mechanic\">Curse</span>");
+    string = string.replace(/\{k:cursed\}/gi, "<span class=\"mechanic\">Cursed</span>");
+    string = string.replace(/\{k:determination\}/gi, "<span class=\"mechanic\">Determination</span>");
+    string = string.replace(/\{k:frozen\}/gi, "<span class=\"mechanic\">Frozen</span>");
+    string = string.replace(/\{k:guard\}/gi, "<span class=\"mechanic\">Guard</span>");
+    string = string.replace(/\{k:guarding\}/gi, "<span class=\"mechanic\">Guarding</span>");
+    string = string.replace(/\{k:icurse\}/gi, "<span class=\"mechanic\">Infernal Curse</span>");
+    string = string.replace(/\{k:lcurse\}/gi, "<span class=\"mechanic\">Lesser Curse</span>");
+    string = string.replace(/\{k:meleestance\}/gi, "<span class=\"mechanic\">Melee Stance</span>");
+    string = string.replace(/\{k:rangedstance\}/gi, "<span class=\"mechanic\">Ranged Stance</span>");
+    string = string.replace(/\{k:soulspark\}/gi, "<span class=\"mechanic\">Soul Spark</span>");
+    string = string.replace(/\{k:soulsparks\}/gi, "<span class=\"mechanic\">Soul Sparks</span>");
+    string = string.replace(/\{k:stances\}/gi, "<span class=\"mechanic\">Stances</span>");
+    string = string.replace(/\{k:stealth\}/gi, "<span class=\"mechanic\">Stealth</span>");
+    string = string.replace(/\{k:unstoppable\}/gi, "<span class=\"mechanic\">Unstoppable</span>");
+    string = string.replace(/\{k:wcurse\}/gi, "<span class=\"mechanic\">Warlock's Curse</span>");
+
+    string = string.replace(/\{k:rdamage\}/gi, "<span class=\"rankup\">Damage</span>");
+    string = string.replace(/\{k:rlifestealchance\}/gi, "<span class=\"rankup\">Life Steal Chance</span>");
+
+    string = string.replace(/<font\sstyle=Tooltip_Mechanic>Shifting<\/font>/gi, "<span class=\"mechanic\">Shifting</span>");
+
+    if (string.search("{") > -1) {
+        console.log(string);
+    }
+    return string;
+}
+
+function addOption(select, value) {
+    "use strict";
+    var option = document.createElement("option");
+    option.text = value;
+    select.add(option);
+}
+
+function addWarning(className, innerHTML) {
+    "use strict";
+    var div = document.createElement("div");
+    div.className = className;
+    div.innerHTML = innerHTML;
+    document.getElementById("warnings").appendChild(div);
+}
+
+function resizeOptions(select, cap) {
+    "use strict";
+    if (select.length === 4 && cap === 5) {
+        addOption(select, "4/5");
+        addOption(select, "5/5");
+        select.options[0].text = "0/5";
+        select.options[1].text = "1/5";
+        select.options[2].text = "2/5";
+        select.options[3].text = "3/5";
+    } else if (select.length === 6 && cap === 3) {
+        select.remove(5);
+        select.remove(4);
+        select.options[0].text = "0/3";
+        select.options[1].text = "1/3";
+        select.options[2].text = "2/3";
+        select.options[3].text = "3/3";
+    }
+}
+
+function enter(id) {
+    "use strict";
+    var classIndex = document.getElementById("class").selectedIndex;
+    if (id < 42) {
+        document.getElementById("description").innerHTML = "<b>" + feats[classIndex][id].feat + "</b><br>" + feats[classIndex][id].desc;
+    } else {
+        var pathIndex = document.getElementById("path").selectedIndex;
+        id -= 42;
+        document.getElementById("description").innerHTML = "<b>" + pathFeats[classIndex][pathIndex][id].feat + "</b><br>" + pathFeats[classIndex][pathIndex][id].desc;
+    }
+}
+
+function leave() {
+    "use strict";
+    document.getElementById("description").innerHTML = "";
+}
+
+function replaceQuery() {
+    "use strict";
+    var query = "?" + document.getElementById("class").selectedIndex + document.getElementById("path").selectedIndex;
+    var i;
+    for (i = 0; i < 45; i += 1) {
+        query += document.getElementById(i).selectedIndex;
+    }
+    if (query.replace(/0/g, "") === "?") {
+        history.replaceState(null, null, location.protocol + "//" + location.host + location.pathname);
+    } else {
+        history.replaceState(null, null, query);
+    }
+}
+
+function update() {
+    "use strict";
+    var assigned = [];
+    var paragon = 0;
+    var element;
+    var i;
+    for (i = 0; i < 45; i += 1) {
+        element = document.getElementById(i);
+        if (element.selectedIndex > 0) {
+            element.nextSibling.style.backgroundColor = "yellow";
+        } else {
+            element.nextSibling.removeAttribute("style");
+        }
+        assigned[i] = element.selectedIndex;
+        if (i > 11) {
+            paragon += assigned[i];
+        }
+    }
+    var heroicT1 = assigned[0] + assigned[1] + assigned[2];
+    var heroicT2 = assigned[3] + assigned[4] + assigned[5];
+    var heroicT3 = assigned[6] + assigned[7] + assigned[8];
+    var heroicT4 = assigned[9] + assigned[10] + assigned[11];
+    var heroic = heroicT1 + heroicT2 + heroicT3 + heroicT4;
+
+    var warnings = document.getElementById("warnings");
+    while (warnings.firstChild) {
+        warnings.removeChild(warnings.firstChild);
+    }
+    addWarning("bold", heroic + " of 20 Heroic feats");
+    if (heroic > 23) {
+        addWarning("error", "ERROR: Too many Heroic feats.");
+    } else if (heroic > 20) {
+        addWarning("warning", "Warning: Only Human characters get 3 extra Heroic feats.");
+    }
+    if (heroicT2 + heroicT3 + heroicT4 > 0 && heroicT1 < 5) {
+        addWarning("warning", "Warning: Insufficient tier 1 Heroic feats. Expected at least 5, but found " + heroicT1 + ".");
+    } else if (heroicT3 + heroicT4 > 0 && heroicT1 + heroicT2 < 10) {
+        addWarning("warning", "Warning: Insufficient tier 2 (or lower) Heroic feats. Expected at least 10, but found " + (heroicT1 + heroicT2) + ".");
+    } else if (heroicT4 > 0 && heroicT1 + heroicT2 + heroicT3 < 15) {
+        addWarning("warning", "Warning: Insufficient tier 3 (or lower) Heroic feats. Expected at least 15, but found " + (heroicT1 + heroicT2 + heroicT3) + ".");
+    }
+
+    addWarning("bold", paragon + " of 41 Paragon feats");
+    if (paragon > 41) {
+        addWarning("error", "ERROR: Too many Paragon feats.");
+    }
+    var paragonT1;
+    var paragonT2;
+    var paragonT3;
+    var paragonT4;
+    var paragonT5;
+    var paragonT6;
+    for (i = 0; i < 3; i += 1) {
+        paragonT1 = assigned[10 * i + 12] + assigned[10 * i + 13];
+        paragonT2 = assigned[10 * i + 14] + assigned[i + 42];
+        paragonT3 = assigned[10 * i + 15] + assigned[10 * i + 16];
+        paragonT4 = assigned[10 * i + 17] + assigned[10 * i + 18];
+        paragonT5 = assigned[10 * i + 19] + assigned[10 * i + 20];
+        paragonT6 = assigned[10 * i + 21];
+        if (paragonT2 + paragonT3 + paragonT4 + paragonT5 + paragonT6 > 0 && paragonT1 < 5) {
+            addWarning("warning", "Warning: Insufficient tier 1 " + document.getElementById("tree" + i).textContent
+                    + " feats. Expected at least 5, but found " + paragonT1 + ".");
+        } else if (paragonT3 + paragonT4 + paragonT5 + paragonT6 > 0 && paragonT1 + paragonT2 < 10) {
+            addWarning("warning", "Warning: Insufficient tier 2 (or lower) " + document.getElementById("tree" + i).textContent
+                    + " feats. Expected at least 10, but found " + (paragonT1 + paragonT2) + ".");
+        } else if (paragonT4 + paragonT5 + paragonT6 > 0 && paragonT1 + paragonT2 + paragonT3 < 15) {
+            addWarning("warning", "Warning: Insufficient tier 3 (or lower) " + document.getElementById("tree" + i).textContent
+                    + " feats. Expected at least 15, but found " + (paragonT1 + paragonT2 + paragonT3) + ".");
+        } else if (paragonT5 + paragonT6 > 0 && paragonT1 + paragonT2 + paragonT3 + paragonT4 < 20) {
+            addWarning("warning", "Warning: Insufficient tier 4 (or lower) " + document.getElementById("tree" + i).textContent
+                    + " feats. Expected at least 20, but found " + (paragonT1 + paragonT2 + paragonT3 + paragonT4) + ".");
+        } else if (paragonT6 > 0 && paragonT1 + paragonT2 + paragonT3 + paragonT4 + paragonT5 < 25) {
+            addWarning("warning", "Warning: Insufficient tier 5 (or lower) " + document.getElementById("tree" + i).textContent
+                    + " feats. Expected at least 25, but found " + (paragonT1 + paragonT2 + paragonT3 + paragonT4 + paragonT5) + ".");
+        }
+    }
+
+    replaceQuery();
+}
+
+function changeClass() {
+    "use strict";
+    var classIndex = document.getElementById("class").selectedIndex;
+    document.getElementById("tree0").textContent = trees[classIndex][0];
+    document.getElementById("tree1").textContent = trees[classIndex][1];
+    document.getElementById("tree2").textContent = trees[classIndex][2];
+
+    var path = document.getElementById("path");
+    path.selectedIndex = 0;
+    path.options[0].text = paths[classIndex][0];
+    path.options[1].text = paths[classIndex][1];
+
+    var i;
+    var element;
+    for (i = 0; i < 42; i += 1) {
+        element = document.getElementById(i);
+        element.selectedIndex = 0;
+        element.nextSibling.textContent = feats[classIndex][i].feat;
+        resizeOptions(element, feats[classIndex][i].cap);
+    }
+    for (i = 0; i < 3; i += 1) {
+        element = document.getElementById(42 + i);
+        element.selectedIndex = 0;
+        element.nextSibling.textContent = pathFeats[classIndex][0][i].feat;
+    }
+    update();
+}
+
+function changePath() {
+    "use strict";
+    var classIndex = document.getElementById("class").selectedIndex;
+    var pathIndex = document.getElementById("path").selectedIndex;
+    var i;
+    var element;
+    for (i = 0; i < 3; i += 1) {
+        element = document.getElementById(42 + i);
+        element.nextSibling.textContent = pathFeats[classIndex][pathIndex][i].feat;
+    }
+    replaceQuery();
+}
+
+function initialize() {
+    "use strict";
+    var i;
+    var j;
+    var k;
+    for (i = 0; i < 8; i += 1) {
+        for (j = 0; j < 42; j += 1) {
+            feats[i][j].desc = markup(feats[i][j].desc);
+        }
+        for (j = 0; j < 2; j += 1) {
+            for (k = 0; k < 3; k += 1) {
+                pathFeats[i][j][k].desc = markup(pathFeats[i][j][k].desc);
+            }
+        }
+    }
+
+    var query = location.search.slice(1);
+
+    var classIndex = parseInt(query[0]);
+    if (isNaN(classIndex) || classIndex >= 8) {
+        classIndex = 0;
+    }
+    document.getElementById("class").selectedIndex = classIndex;
+    document.getElementById("tree0").textContent = trees[classIndex][0];
+    document.getElementById("tree1").textContent = trees[classIndex][1];
+    document.getElementById("tree2").textContent = trees[classIndex][2];
+
+    var pathIndex = parseInt(query[1]);
+    if (isNaN(pathIndex) || pathIndex >= 2) {
+        pathIndex = 0;
+    }
+    var path = document.getElementById("path");
+    path.selectedIndex = pathIndex;
+    path.options[0].text = paths[classIndex][0];
+    path.options[1].text = paths[classIndex][1];
+
+    query = query.slice(2);
+    var index;
+    var element;
+    for (i = 0; i < 42; i += 1) {
+        index = parseInt(query[i]);
+        if (isNaN(index) || index > feats[classIndex].cap) {
+            index = 0;
+        }
+        element = document.getElementById(i);
+        element.nextSibling.textContent = feats[classIndex][i].feat;
+        for (j = 0; j <= feats[classIndex][i].cap; j += 1) {
+            addOption(element, j + "/" + feats[classIndex][i].cap);
+        }
+        element.selectedIndex = index;
+    }
+
+    for (i = 42; i < 45; i += 1) {
+        index = parseInt(query[i]);
+        if (isNaN(index) || index > 5) {
+            index = 0;
+        }
+        element = document.getElementById(i);
+        element.nextSibling.textContent = pathFeats[classIndex][pathIndex][i - 42].feat;
+        for (j = 0; j <= 5; j += 1) {
+            addOption(element, j + "/" + 5);
+        }
+        element.selectedIndex = index;
+    }
+    update();
+}
+
+initialize();
+</script>
+</body>
+</html>
