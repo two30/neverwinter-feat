@@ -426,23 +426,23 @@ var feats = [
         {feat: "Brutal Curse", cap: 5, desc: "Your {k:Wcurse} increases your damage against affected targets by an additional 2/4/6/8/10%."},
         {feat: "Murderous Flames", cap: 5, desc: "Killing Flames deals 6/12/18/24/30% of its damage to foes within 20 feet of the primary target. This damage is split equally among the affected targets. If there are no other targets, the primary target takes all the damage."},
         {feat: "Creeping Death", cap: 1, desc: "When you deal damage with your At-Will, Encounter, or Daily powers to targets affected by your {k:WCurse} they are afflicted with Creeping Death. Creeping Death deals 60% additional damage as Necrotic damage over 8 seconds. Creeping Death stacks."},
-        {feat: "Parting Blasphemy", cap: 5, desc: "When a {k:Curse} is removed from a target, deal 1.2/2.4/3.6/4.8/6% of your weapon damage to that target."},
-        {feat: "Relentless Curse", cap: 5, desc: "When a target affected by {k:WCurse} is killed, surrounding targets have a 5/10/15/20/25% chance to be afflicted with an {k:Icurse}. "},
+        {feat: "Parting Blasphemy", cap: 5, desc: "When a {k:Curse} is removed from a target, deal 10/20/30/40/50% of your weapon damage to that target."},
+        {feat: "Relentless Curse", cap: 5, desc: "When your {k:WCurse} is removed from a target, that target has a 20/40/60/80/100% chance to be afflicted with a {k:Lcurse}."},
         {feat: "Syphoning Curse", cap: 5, desc: "When a {k:Cursed} target is killed, the slayer of that target is {k:healed} for 20/40/60/80/100% of your weapon damage every second for 3 seconds."},
-        {feat: "Mocking Spirit", cap: 5, desc: "Your Soul Puppet now deals 200/400/600/800/1000% more threat."},
-        {feat: "Spiritfire", cap: 5, desc: "Foes near your Soul Puppet now also take damage 10/20/30/40/50% of your Weapon Damage as damage every second."},
+        {feat: "Mocking Spirit", cap: 5, desc: "Your Soul Puppet now deals 200/400/600/800/1000% more threat, and your Soul Puppet gains an additional 10/20/30/40/50% of your Maximum Hit Points."},
+        {feat: "Spiritfire", cap: 5, desc: "Foes near your Soul Puppet now also take damage 15/30/45/60/75% of your Weapon Damage as Fire damage every second."},
         {feat: "Warding Spirits", cap: 5, desc: "While you have a Soul Puppet active you take 2/4/6/8/10% less damage."},
         {feat: "Burning Puppets", cap: 5, desc: "Your Soul Puppets have a 5/10/15/20/25% chance to apply {k:Lcurse} when they attack a target.<br><br>Your Soul Puppets deal 2/4/6/8/10% more damage to targets affected by {k:Lcurse}."},
         {feat: "Ghastly Commander", cap: 5, desc: "While you have a Soul Puppet active you deal 2/4/6/8/10% more damage and Life Steal for .4/.8/1.2/1.6/2% more."},
         {feat: "Wrathful Souls", cap: 5, desc: "Your Soul Puppets deal 20/40/60/80/100% more damage, and their attacks now siphon some of that health to you, healing you for 2/4/6/8/10% of their damage."},
         {feat: "Soul Desecration", cap: 1, desc: "Your Soul Puppet moves faster and no longer dissipates after 5 hits. Targets marked by {k:WCurse} are corrupted and will spawn a Soul Puppet when killed. Additionally every 15 seconds, the next time you deal damage you spawn a Soul Puppet."},
         {feat: "Vengeful Curse", cap: 5, desc: "When damaged, you have a 2/4/6/8/10% chance to apply {k:LCurse} to your attacker."},
-        {feat: "Hope Stealer", cap: 5, desc: "On critical hits, your Life Steal stat is momentarily increased by 2/4/6/8/10 points per character level."},
+        {feat: "Hope Stealer", cap: 5, desc: "On critical hits, your {k:rLifeStealChance} and {k:LifeSteal} are increased by 1/2/3/4/5% for 4 seconds."},
         {feat: "Compounded Soul", cap: 5, desc: "Striking Cursed foes has a chance to grant 1/2/3/4/5% of the Warlock's Max HP as {k:thp} to allies near the Warlock."},
         {feat: "Soul Breaker", cap: 5, desc: "When a foe dies within 30' of the Warlock, a random nearby ally gains 2/4/6/8/10% of their AP."},
         {feat: "Dark Revelry", cap: 5, desc: "When you Life Steal there is a chance to gain Revelry. Revelry increases the Move Speed and Power of nearby allies by 4/8/12/16/20% for 5 seconds."},
-        {feat: "Aura of Despair", cap: 5, desc: "Enemies within 20ft of you deal 1/2/3/4/5% less damage."},
-        {feat: "Aura of Cruelty", cap: 5, desc: "Allies within 20 ft of you Life Steal for 1/2/3/4/5% more."},
+        {feat: "Aura of Despair", cap: 5, desc: "Enemies within 50' of you deal 1/2/3/4/5% less damage."},
+        {feat: "Aura of Cruelty", cap: 5, desc: "You and all teammates within 50' of you gain 1/2/3/4/5% {k:rLifeStealChance}."},
         {feat: "Eldritch Momentum", cap: 5, desc: "You restore 1/2/3/4/5% stamina each time you take damage."},
         {feat: "Darkness", cap: 5, desc: "Enemies damaged by Blades of Vanquished Armies briefly deal 2/4/6/8/10% less damage to you."},
         {feat: "Soul Bonding", cap: 1, desc: "Your powers now heal your allies for a percentage of their damage equal to your Life Steal chance. This effect is 30% as effective on Area of Effect powers. The healing component of your Vampiric Embrace now also heals nearby allies for 100% of its value."}
@@ -634,7 +634,6 @@ function markup(string) {
     string = string.replace(/\{k:frozen\}/gi, "<span class=\"mechanic\">Frozen</span>");
     string = string.replace(/\{k:guard\}/gi, "<span class=\"mechanic\">Guard</span>");
     string = string.replace(/\{k:guarding\}/gi, "<span class=\"mechanic\">Guarding</span>");
-    string = string.replace(/\{k:icurse\}/gi, "<span class=\"mechanic\">Infernal Curse</span>");
     string = string.replace(/\{k:lcurse\}/gi, "<span class=\"mechanic\">Lesser Curse</span>");
     string = string.replace(/\{k:meleestance\}/gi, "<span class=\"mechanic\">Melee Stance</span>");
     string = string.replace(/\{k:rangedstance\}/gi, "<span class=\"mechanic\">Ranged Stance</span>");
