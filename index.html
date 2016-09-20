@@ -291,7 +291,7 @@ var feats = [
         {feat: "Crushing Shield", cap: 5, desc: "Your Shield Slam and Tide of Iron powers now deal 4/8/12/16/20% more damage."},
         {feat: "Cruel Cut Style", cap: 5, desc: "Cleave now deals 3/6/9/12/15% more damage."},
         {feat: "Staggering Challenge", cap: 5, desc: "Gain 4/8/12/16/20% damage bonus to Griffon's Wrath when the target has recently been struck by Staggering Challenge empowered Griffon's Wrath. Additionally your damage bonus from Knight's Challenge is increased by 2/4/6/8/10%."},
-        {feat: "Tactical Superiority", cap: 5, desc: "Combat Superiority deals 1/2/3/4/5% more damage. At 5th tier of this feat, Combat Superiority will not require that the target hits you first."},
+        {feat: "Tactical Superiority", cap: 5, desc: "You deal 1/2/3/4/5% more damage and Combat Superiority grants an additional 1/2/3/4/5% damage."},
         {feat: "Menacing Impact", cap: 5, desc: "Villain's Menace now has 1/2/3/4/5 feet more range and both Terrifying Impact and Villain's Menace now deal 2/4/6/8/10% more damage."},
         {feat: "Reckless Attacker", cap: 1, desc: "When struck in combat you gain Reckless Attacker. Reckless Attacker increases your damage by 5% and Critical chance by 2%. Reckless Attacker lasts 10 seconds and stacks up to 5 times."},
         {feat: "Armor of Bahamut", cap: 5, desc: "While {k:Stamina} is below 30% of max you take 2/4/6/8/10% less damage from all sources."},
@@ -310,7 +310,7 @@ var feats = [
         {feat: "Rousing Speech", cap: 5, desc: "Allies within 30' of you gain {k:APs} 1/2/3/4/5% faster."},
         {feat: "United", cap: 5, desc: "Allies within 30' of you take 1/2/3/4/5% less {k:rDamage}."},
         {feat: "Inspiring Leader", cap: 5, desc: "Into the Fray increases the damage dealt by {k:team} members by 1/2/3/4/5%"},
-        {feat: "Powerful Strike", cap: 5, desc: "Lunging Strike provides 4/8/12/16/20% more threat and has a 20/40/60/80/100% chance to interrupt your target."},
+        {feat: "Powerful Strike", cap: 5, desc: "Lunging Strike provides 4/8/12/16/20% more threat and has a 20/40/60/80/100% chance to interrupt your target.<br><br>Line Breaker Assault now has its recharge time reduced by 0.2/0.4/0.6/0.8/1s for every target hit."},
         {feat: "Surging Tide", cap: 5, desc: "Tide of Iron's debuff also reduces the amount of physical damage they deal to you by 2/4/6/8/10%."},
         {feat: "Terrifying Menace", cap: 5, desc: "Anvil of Doom now has a 20/40/60/80/100% chance to stun the target for 1 second."},
         {feat: "Martial Mastery", cap: 1, desc: "Taking damage now builds {k:Aps} for yourself and allies within 50'. You gain a bonus to this value based on your {k:Dres}."}
@@ -371,7 +371,7 @@ var feats = [
         {feat: "Divine Attunement", cap: 3, desc: "You receive 2/4/6% more healing from spells."},
         {feat: "Steadfast", cap: 5, desc: "Each point of Constitution now grants an additional .5/1/1.5/2/2.5% Maximum Hit Points."},
         {feat: "Divine Wisdom", cap: 3, desc: "Each point of Wisdom now increases healing by an additional .33/.66/1%."},
-        {feat: "Force of Will", cap: 3, desc: "Each point of Charisma now increases your Critical chance by an additional .33/.66/1%."},
+        {feat: "Force of Will", cap: 3, desc: "– Each point of Charisma now increases your Critical chance by an additional .33/.66/1%."},
         {feat: "Swift Flash", cap: 5, desc: "When you are struck by a foe you have a chance to trigger a Flash, granting you increased movement speed of 6/12/18/24/30% for 4 seconds. This can only happen once every ten seconds."},
         {feat: "Bound By Light", cap: 5, desc: "Your Control Strength is increased by 2/4/6/8/10%."},
         {feat: "Flash of Light", cap: 5, desc: "Your encounter powers have a 5/10/15/20/25% chance to reduce the cooldown of your nearby allies' encounter powers by 10%."},
@@ -533,7 +533,7 @@ var pathFeats = [
     [ // Guardian Fighter
         [ // Iron Vanguard
             {feat: "Reinforced Surge", desc: "Frontline Surge now leaves targets {k:prone} for an additional .1/.2/.3/.4/.5 second, and deals 1/2/3/4/5% more damage."},
-            {feat: "Improved Reaction", desc: "Ferocious Reaction {k:heals} you for an additional 2/4/6/8/10% of your max {k:HP}."},
+            {feat: "Iron Focus", desc: "Ferocious Reaction {k:heals} you for an additional 2/4/6/8/10% of your max {k:HP}.<br><br>Frontline Surge now has a 20/40/60/80/100% chance to {k:Taunt} and {k:Mark} the affected targets."},
             {feat: "Battle Trample", desc: "When Trample the Fallen would cause you to deal more damage, you also gain 5/10/15/20/25% of your weapon damage in threat and deal 5/10/15/20/25% of your weapon damage as Physical Damage."}
         ],
         [ // Swordmaster
@@ -616,6 +616,7 @@ function markup(string) {
     string = string.replace(/\{k:hot\}/gi, "<span class=\"keyword\">Heal Over Time</span>");
     string = string.replace(/\{k:interrupt\}/gi, "<span class=\"keyword\">Interrupt</span>");
     string = string.replace(/\{k:lifesteal\}/gi, "<span class=\"keyword\">Life Steal</span>");
+    string = string.replace(/\{k:mark\}/gi, "<span class=\"keyword\">Mark</span>");
     string = string.replace(/\{k:marked\}/gi, "<span class=\"keyword\">Marked</span>");
     string = string.replace(/\{k:piercingdam\}/gi, "<span class=\"keyword\">Piercing Damage</span>");
     string = string.replace(/\{k:power\}/gi, "<span class=\"keyword\">Power</span>");
@@ -624,6 +625,7 @@ function markup(string) {
     string = string.replace(/\{k:slows\}/gi, "<span class=\"keyword\">Slows</span>");
     string = string.replace(/\{k:speed\}/gi, "<span class=\"keyword\">Run Speed</span>");
     string = string.replace(/\{k:stamina\}/gi, "<span class=\"keyword\">Stamina</span>");
+    string = string.replace(/\{k:taunt\}/gi, "<span class=\"keyword\">Taunt</span>");
     string = string.replace(/\{k:thp\}/gi, "<span class=\"keyword\">Temporary Hit Points</span>");
 
     string = string.replace(/\{k:arcanem\}/gi, "<span class=\"mechanic\">Arcane Mastery</span>");
