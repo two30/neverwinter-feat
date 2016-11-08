@@ -711,9 +711,10 @@ function leave() {
 function replaceQuery() {
     "use strict";
     var query = "?" + document.getElementById("class").selectedIndex + document.getElementById("path").selectedIndex;
-    var i;
-    for (i = 0; i < 45; i += 1) {
+    var i = 0;
+    while (i < 45) {
         query += document.getElementById(i).selectedIndex;
+        i += 1;
     }
     if (query.replace(/0/g, "") === "?") {
         history.replaceState(null, null, location.protocol + "//" + location.host + location.pathname);
@@ -727,8 +728,8 @@ function update() {
     var assigned = [];
     var paragon = 0;
     var element;
-    var i;
-    for (i = 0; i < 45; i += 1) {
+    var i = 0;
+    while (i < 45) {
         element = document.getElementById(i);
         if (element.selectedIndex > 0) {
             element.nextSibling.style.backgroundColor = "yellow";
@@ -739,6 +740,7 @@ function update() {
         if (i > 11) {
             paragon += assigned[i];
         }
+        i += 1;
     }
     var heroicT1 = assigned[0] + assigned[1] + assigned[2];
     var heroicT2 = assigned[3] + assigned[4] + assigned[5];
@@ -774,7 +776,8 @@ function update() {
     var paragonT4;
     var paragonT5;
     var paragonT6;
-    for (i = 0; i < 3; i += 1) {
+    i = 0;
+    while (i < 3) {
         paragonT1 = assigned[10 * i + 12] + assigned[10 * i + 13];
         paragonT2 = assigned[10 * i + 14] + assigned[i + 42];
         paragonT3 = assigned[10 * i + 15] + assigned[10 * i + 16];
@@ -797,6 +800,7 @@ function update() {
             addWarning("warning", "Warning: Insufficient tier 5 (or lower) " + document.getElementById("tree" + i).textContent
                     + " feats. Expected at least 25, but found " + (paragonT1 + paragonT2 + paragonT3 + paragonT4 + paragonT5) + ".");
         }
+        i += 1;
     }
 
     replaceQuery();
@@ -814,18 +818,21 @@ function changeClass() {
     path.options[0].text = paths[classIndex][0];
     path.options[1].text = paths[classIndex][1];
 
-    var i;
+    var i = 0;
     var element;
-    for (i = 0; i < 42; i += 1) {
+    while (i < 42) {
         element = document.getElementById(i);
         element.selectedIndex = 0;
         element.nextSibling.textContent = feats[classIndex][i].feat;
         resizeOptions(element, feats[classIndex][i].cap);
+        i += 1;
     }
-    for (i = 0; i < 3; i += 1) {
+    i = 0;
+    while (i < 3) {
         element = document.getElementById(42 + i);
         element.selectedIndex = 0;
         element.nextSibling.textContent = pathFeats[classIndex][0][i].feat;
+        i += 1;
     }
     update();
 }
@@ -834,29 +841,37 @@ function changePath() {
     "use strict";
     var classIndex = document.getElementById("class").selectedIndex;
     var pathIndex = document.getElementById("path").selectedIndex;
-    var i;
+    var i = 0;
     var element;
-    for (i = 0; i < 3; i += 1) {
+    while (i < 3) {
         element = document.getElementById(42 + i);
         element.nextSibling.textContent = pathFeats[classIndex][pathIndex][i].feat;
+        i += 1;
     }
     replaceQuery();
 }
 
 function initialize() {
     "use strict";
-    var i;
+    var i = 0;
     var j;
     var k;
-    for (i = 0; i < 8; i += 1) {
-        for (j = 0; j < 42; j += 1) {
+    while (i < 8) {
+        j = 0;
+        while (j < 42) {
             feats[i][j].desc = markup(feats[i][j].desc);
+            j += 1;
         }
-        for (j = 0; j < 2; j += 1) {
-            for (k = 0; k < 3; k += 1) {
+        j = 0;
+        while (j < 2) {
+            k = 0;
+            while (k < 3) {
                 pathFeats[i][j][k].desc = markup(pathFeats[i][j][k].desc);
+                k += 1;
             }
+            j += 1;
         }
+        i += 1;
     }
 
     var query = location.search.slice(1);
@@ -882,30 +897,36 @@ function initialize() {
     query = query.slice(2);
     var index;
     var element;
-    for (i = 0; i < 42; i += 1) {
+    i = 0;
+    while (i < 42) {
         index = parseInt(query[i]);
         if (isNaN(index) || index > feats[classIndex].cap) {
             index = 0;
         }
         element = document.getElementById(i);
         element.nextSibling.textContent = feats[classIndex][i].feat;
-        for (j = 0; j <= feats[classIndex][i].cap; j += 1) {
+        j = 0;
+        while (j <= feats[classIndex][i].cap) {
             addOption(element, j + "/" + feats[classIndex][i].cap);
+            j += 1;
         }
         element.selectedIndex = index;
+        i += 1;
     }
-
-    for (i = 42; i < 45; i += 1) {
+    while (i < 45) {
         index = parseInt(query[i]);
         if (isNaN(index) || index > 5) {
             index = 0;
         }
         element = document.getElementById(i);
         element.nextSibling.textContent = pathFeats[classIndex][pathIndex][i - 42].feat;
-        for (j = 0; j <= 5; j += 1) {
+        j = 0;
+        while (j < 6) {
             addOption(element, j + "/" + 5);
+            j += 1;
         }
         element.selectedIndex = index;
+        i += 1;
     }
     update();
 }
